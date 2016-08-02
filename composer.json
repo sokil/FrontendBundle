@@ -1,6 +1,6 @@
 {
-    "name": "sokil/deploy-bundle",
-    "description": "Symfony application deploy bundle",
+    "name": "sokil/spa-bundle",
+    "description": "Single Page Application bundle",
     "license": "MIT",
     "authors": [
         {
@@ -10,9 +10,6 @@
     ],
     "require": {
         "php": "^5.6 || ^7.0",
-        "symfony/framework-bundle": "~2.3",
-        "symfony/process": "~2.1|~3.0",
-        "symfony/console": "~2.0|~3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "5.4.*",
@@ -20,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Sokil\\DeployBundle\\": ["src/", "tests/"]
+            "Sokil\\SpaBundle\\": ["src/", "tests/"]
         }
     }
 }
