@@ -1,0 +1,5 @@
+each button, buttonName in buttons
+  a.btn.btn-xs(data-value=buttonName, class=buttonClass)
+    if button.icon
+      span(class=button.icon)
+      span.hidden-xs= " " + button.label

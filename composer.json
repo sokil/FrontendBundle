@@ -1,0 +1,26 @@
+{
+    "name": "sokil/deploy-bundle",
+    "description": "Symfony application deploy bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmytro Sokil",
+            "email": "dmytro.sokil@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "symfony/framework-bundle": "~2.3",
+        "symfony/process": "~2.1|~3.0",
+        "symfony/console": "~2.0|~3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.4.*",
+        "satooshi/php-coveralls": "0.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sokil\\DeployBundle\\": ["src/", "tests/"]
+        }
+    }
+}

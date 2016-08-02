@@ -1,0 +1,12 @@
+.modal
+  .modal-dialog(class=dialogClass)
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;          
+        h4.modal-title= title
+      .modal-body
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') Close
+          each button in buttons
+            button.btn(type='button', class=button.class)= button.title

@@ -1,0 +1,20 @@
+{
+    "name": "spa",
+    "version": "0.0.1",
+    "description": "spa",
+    "main": "Gruntfile.js",
+    "author": "Dmytro Sokil <dmytro.sokil@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "jade": "1.*",
+        "grunt-contrib-uglify": "2.0.0",
+        "grunt-contrib-jshint": "0.11.0",
+        "grunt-contrib-cssmin": "1.0.1",
+        "grunt-contrib-pug": "1.0.0",
+        "grunt-contrib-less": "1.3.0",
+        "grunt-contrib-copy": "1.0.0",
+        "grunt-contrib-concat": "1.0.1",
+        "grunt-contrib-watch": "0.*",
+        "grunt-newer": "1.1.0"
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "spa",
+  "version": "0.0.0",
+  "authors": [
+    "Dmytro Sokil <dmytro.sokil@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+      "marionette": "2.4.2",
+      "respond": "1.4.2",
+      "html5shiv": "3.7.3"
+  }
+}

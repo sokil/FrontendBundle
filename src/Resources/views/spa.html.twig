@@ -1,0 +1,16 @@
+{% macro jsResources() %}
+    {% javascripts
+        '@SpaBundle/Resources/public/js/components.jade.js'
+        
+        '@SpaBundle/Resources/assets/components/app/container.js'
+        '@SpaBundle/Resources/assets/components/app/i18n.js'
+        '@SpaBundle/Resources/assets/components/app/application.js'
+
+        '@SpaBundle/Resources/assets/components/pagination/PaginationView.js'
+        '@SpaBundle/Resources/assets/components/popup/PopupView.js'
+        '@SpaBundle/Resources/assets/components/buttonGroup/ButtonGroupView.js'
+        '@SpaBundle/Resources/assets/components/progress/ProgressView.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endmacro %}

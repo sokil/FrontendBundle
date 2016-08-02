@@ -1,0 +1,11 @@
+nav.text-center
+  ul.pagination
+    li
+      a(href="#", aria-label="Previous", data-prev)
+        span(aria-hidden="true") &laquo;
+    - for (page = startPage; page <= endPage; page++)
+      li(class=(currentPage==page) ? "active" : "")
+        a(href="#", data-page=page)= page
+    li
+      a(href="#", aria-label="Next", data-next)
+        span(aria-hidden="true") &raquo;
