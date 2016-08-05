@@ -108,6 +108,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'newer:pug',
         'newer:less',
+        'newer:cssmin',
         'newer:uglify'
     ]);
 
