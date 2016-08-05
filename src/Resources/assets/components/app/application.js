@@ -40,12 +40,12 @@ var Application = Marionette.Application.extend({
         }
 
         // render root view
-        this.rootView = new Marionette.LayoutView.extend({
+        var RootView = Marionette.LayoutView.extend({
             el: 'body',
             template: false,
             regions: options.regions || this.regions,
         });
-
+        this.rootView = new RootView();
         this.rootView.render();
 
         // root view's content events
