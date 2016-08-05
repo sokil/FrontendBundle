@@ -20,17 +20,23 @@ class IndexController extends Controller
             throw $this->createAccessDeniedException();
         }
 
-        /* @var $csrfProfider \Symfony\Component\Security\Csrf\CsrfTokenManager */
+        // get CSRF token
+        /* @var $csrfProvider \Symfony\Component\Security\Csrf\CsrfTokenManager */
         $csrfProvider = $this->get('security.csrf.token_manager');
         $csrfToken = $csrfProvider->getToken('common')->getValue();
 
-        // prepare response
+        // prepare application data
+        $applicationOptions = [
+            'locale'    => $request->getLocale(),
+            'locales'   => $this->container->getParameter('locales'),
+            'csrf'      => $csrfToken,
+        ];
+
+        $applicationOptions += $this->container->get('spa.app_data')->getData();
+
+        // render response
         return $this->render($this->view, [
-            'applicationOptions' => [
-                'locale'    => $request->getLocale(),
-                'locales'   => $this->container->getParameter('locales'),
-                'csrf'      => $csrfToken,
-            ]
+            'applicationOptions' => $applicationOptions
         ]);
     }
 }
