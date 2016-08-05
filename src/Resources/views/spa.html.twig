@@ -1,10 +1,9 @@
 {% macro jsResources() %}
     {% javascripts
         '@SpaBundle/Resources/public/js/vendor.js'
-        '@SpaBundle/Resources/public/js/ie.js'
-        
+
         '@SpaBundle/Resources/public/js/components.jade.js'
-        
+
         '@SpaBundle/Resources/assets/components/app/container.js'
         '@SpaBundle/Resources/assets/components/app/i18n.js'
         '@SpaBundle/Resources/assets/components/app/application.js'
@@ -16,4 +15,12 @@
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    <!--[if lt IE 9]>
+    {% javascripts
+        '@SpaBundle/Resources/public/js/ie.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <![endif]-->
 {% endmacro %}
