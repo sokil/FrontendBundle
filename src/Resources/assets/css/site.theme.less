@@ -1,0 +1,93 @@
+@import "mixin.less";
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    margin-bottom: 130px;
+    background: #efefef;
+}
+
+.spinner {
+    &-small {
+        background: url(/images/taskstock/spinner-small.gif) no-repeat left center;
+        padding: 0px 10px;
+        margin: 0 0 0 10px;
+    }
+}
+
+.loading {
+    position: relative;
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #FFFFFF url(/images/taskstock/spinner-big.gif) no-repeat center center;
+        z-index: 9999;
+        content: "";
+    }
+}
+
+.top-space {
+    margin-top: 20px;
+}
+
+.bottom-space {
+    margin-bottom: 20px;
+}
+
+.block {
+    background: #ffffff;
+    box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+    
+    .border-radius(4px);
+
+    .title {
+        padding: 10px;
+        font-weight: bold;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .content.no-border {
+        padding: 0px;
+    }
+}
+
+footer {
+    margin-top: 10px;
+    padding: 10px 0;
+    background-color: #f8f8f8;
+    border-top: 1px solid #e7e7e7;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 110px;
+}
+
+.mce-fullscreen {
+    z-index: 9000 !important;
+}
+
+.btn-upload {
+    overflow: hidden;
+    input {
+        opacity: 0;
+        width: 0.1px;
+        height: 0.1px;
+        position: absolute;
+    }
+    label {
+        padding: 0;
+        margin: 0;
+        font-weight: 400;
+    }
+}

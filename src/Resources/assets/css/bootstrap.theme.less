@@ -1,0 +1,58 @@
+@import "mixin.less";
+
+.navbar.nabvar-shadow {
+  box-shadow: 0 0 4px rgba(0,0,0,.10),0 4px 14px rgba(0,0,0,.10);
+}
+
+.navbar-brand {
+  text-transform: uppercase;
+}
+
+.navbar-nav.navbar-center {
+  width: 100%;
+  text-align: center;
+  > li {
+    float: none;
+    display: inline-block;
+  }
+}
+
+.btn.btn-default {
+  border: 0;
+}
+
+.btn-group {
+  white-space: nowrap;
+  .btn {
+    box-shadow: none;
+  }
+}
+
+.modal {
+  &-header {
+    border-bottom: 0;
+  }
+  &-content {
+    .border-radius(0);
+  }
+  &-footer {
+    border-top: 0;
+    .btn {
+      border: 0;
+    }
+    .btn-default {
+      box-shadow: none;
+    }
+  }
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+
+.label {
+  a {
+    color: white;
+  }
+}

@@ -38,12 +38,32 @@ module.exports = function (grunt) {
                 }
             }
         },
+        less: {
+            theme: {
+                files: {
+                    "Resources/public/css/theme.css": [
+                        "Resources/assets/css/mixin.less",
+                        "Resources/assets/css/bootstrap.theme.less",
+                        "Resources/assets/css/site.theme.less"
+                    ]
+                }
+            }
+        },
+        cssmin: {
+            vendors: {
+                files: {
+                    'Resources/public/css/vendor.css': [
+                        'bower_components/bootstrap/dist/css/bootstrap.min.css'
+                    ]
+                }
+            }
+        },
         uglify: {
             vendors: {
                 options: {
                     compress: grunt.config('env') === 'prod',
                     beautify: grunt.config('env') !== 'prod',
-                    mangle: grunt.config('env') === 'prod',
+                    mangle: grunt.config('env') === 'prod'
                 },
                 files: {
                     'Resources/public/js/vendor.js': [
@@ -87,6 +107,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'newer:pug',
+        'newer:less',
         'newer:uglify'
     ]);
 
