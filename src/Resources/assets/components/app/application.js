@@ -1,7 +1,7 @@
 /**
  * Application
  */
-var AbstractApplication = Marionette.Application.extend({
+var Application = Marionette.Application.extend({
 
     router: null,
 
@@ -24,10 +24,10 @@ var AbstractApplication = Marionette.Application.extend({
         var self = this;
 
         // set router
-        if (options.router instanceof Backbone.Router) {
+        if (options.router instanceof Marionette.AppRouter) {
             this.router = options.router;
         } else {
-            throw new Error('Wrong router configured');
+            this.router = new Marionette.AppRouter();
         }
 
         // set container definition
@@ -35,41 +35,33 @@ var AbstractApplication = Marionette.Application.extend({
             if (options.container instanceof Container) {
                 this.container = options.container;
             } else {
-                throw new Error('Wrong container configured');
+                this.container = new Container();
             }
         }
 
-        // configure already loaded dependencies
-        define('jquery', [], function() { return jQuery; });
-
-        // init root view
-        var RootView = Marionette.LayoutView.extend({
+        // render root view
+        this.rootView = Marionette.LayoutView.extend({
             el: 'body',
             template: false,
             regions: options.regions || this.regions,
         });
 
-        // render root view
-        this.rootView = new RootView();
         this.rootView.render();
 
         // root view's content events
         this.rootView.content.on('empty', function() {
-            $('#content').addClass('loading');
+            this.$el.addClass('loading');
         });
 
         this.rootView.content.on('before:show', function() {
-            $('#content').removeClass('loading');
+            this.$el.removeClass('loading');
         });
 
         // init
         this.on('start', function() {
 
-            // moment
-            // moment().locale('uk');
-
             // start routing
-            Backbone.history.start({pushState: false});
+            Backbone.history.start({pushState: options.pushState || false});
 
             // modal
             $(document).on('click', '[data-modal]', function() {
@@ -147,7 +139,6 @@ Backbone.Model.prototype.fetchDefaults = function(options) {
     }
 
     return $.get(this.urlRoot + '/new').done(function(response) {
-        Task.prototype.defaults = response;
         self.defaults = response;
         self.attributes = _.defaults({}, self.attributes, self.defaults);
         self.trigger('syncDefaults', self, response, options);

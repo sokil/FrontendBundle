@@ -1,14 +1,18 @@
-var Container = function(definition) {
-    for (var serviceId in definition) {
-        this.set(serviceId, definition[serviceId]);
-    }
+var Container = function(definitions) {
+    this.add(definitions);
 };
 
 Container.prototype = {
     prepared: {},
 
     resolved: {},
-    
+
+    add: function(definitions) {
+        for (var serviceId in definitions) {
+            this.set(serviceId, definitions[serviceId]);
+        }
+    },
+
     set: function(serviceId, callable) {
         if (!serviceId) {
             throw Error('Service identifier not specified');
