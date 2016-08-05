@@ -40,7 +40,7 @@ var Application = Marionette.Application.extend({
         }
 
         // render root view
-        this.rootView = Marionette.LayoutView.extend({
+        this.rootView = new Marionette.LayoutView.extend({
             el: 'body',
             template: false,
             regions: options.regions || this.regions,
