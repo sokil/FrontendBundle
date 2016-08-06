@@ -92,6 +92,24 @@ module.exports = function (grunt) {
                 tasks: ['build'],
                 options: {},
             }
+        },
+        copy: {
+            fonts: {
+                expand: true,
+                flatten: true,
+                src: [
+                    'bower_components/bootstrap/dist/fonts/*'
+                ],
+                dest: '../../../web/fonts/'
+            },
+            images: {
+                expand: true,
+                flatten: true,
+                src: [
+                    'Resources/assets/images/*'
+                ],
+                dest: 'Resources/public/images/'
+            }
         }
     });
 
@@ -109,7 +127,8 @@ module.exports = function (grunt) {
         'newer:pug',
         'newer:less',
         'newer:cssmin',
-        'newer:uglify'
+        'newer:uglify',
+        'copy'
     ]);
 
     grunt.registerTask('listen', [
