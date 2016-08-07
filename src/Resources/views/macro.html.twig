@@ -1,4 +1,4 @@
-{% macro commonResources() %}
+{% macro commonJsResources() %}
     {% javascripts
         '@FrontendBundle/Resources/public/js/vendor.js'
     %}
@@ -12,7 +12,9 @@
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <![endif]-->
+{% endmacro %}
 
+{% macro commonCssResources() %}
     {% stylesheets
         '@FrontendBundle/Resources/public/css/vendor.css'
         '@FrontendBundle/Resources/public/css/theme.css'
@@ -21,7 +23,7 @@
     {% endstylesheets %}
 {% endmacro %}
 
-{% macro spaResources() %}
+{% macro spaJsResources() %}
     {% javascripts
         '@FrontendBundle/Resources/public/js/components.jade.js'
 
