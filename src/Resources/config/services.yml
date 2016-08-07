@@ -1,3 +1,2 @@
 services:
-  frontend.spa.app_data:
-    class: Sokil\FrontendBundle\Spa\ApplicationData
+
