@@ -1,8 +1,8 @@
 <?php
 
-namespace Sokil\SpaBundle\Stub\ApplicationData;
+namespace Sokil\FrontendBundle\Stub\Spa;
 
-use Sokil\SpaBundle\ApplicationData\ApplicationDataProviderInterface;
+use Sokil\FrontendBundle\Spa\ApplicationDataProviderInterface;
 
 class ApplicationDataProviderB implements ApplicationDataProviderInterface
 {

@@ -1,6 +1,6 @@
 {
-    "name": "sokil/spa-bundle",
-    "description": "Single Page Application bundle",
+    "name": "sokil/frontend-kit-bundle",
+    "description": "Frontent components to quick start frontend app",
     "license": "MIT",
     "authors": [
         {
@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Sokil\\SpaBundle\\": ["src/", "tests/"]
+            "Sokil\\FrontendBundle\\": ["src/", "tests/"]
         }
     }
 }

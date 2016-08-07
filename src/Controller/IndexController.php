@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokil\SpaBundle\Controller;
+namespace Sokil\FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +32,7 @@ class IndexController extends Controller
             'csrf'      => $csrfToken,
         ];
 
-        $applicationOptions += $this->container->get('spa.app_data')->getData();
+        $applicationOptions += $this->container->get('frontend.spa.app_data')->getData();
 
         // render response
         return $this->render($this->view, [

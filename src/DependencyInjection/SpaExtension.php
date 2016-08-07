@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokil\SpaBundle\DependencyInjection;
+namespace Sokil\FrontendBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

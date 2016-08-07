@@ -1,13 +1,13 @@
 <?php
 
-namespace Sokil\SpaBundle\DependencyInjection;
+namespace Sokil\FrontendBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
-use Sokil\SpaBundle\ApplicationData\ApplicationData;
-use Sokil\SpaBundle\Stub\ApplicationData\ApplicationDataProviderA;
-use Sokil\SpaBundle\Stub\ApplicationData\ApplicationDataProviderB;
+use Sokil\FrontendBundle\Spa\ApplicationData;
+use Sokil\FrontendBundle\Stub\Spa\ApplicationDataProviderA;
+use Sokil\FrontendBundle\Stub\Spa\ApplicationDataProviderB;
 
 class SpaExtensionTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,13 +18,13 @@ class SpaExtensionTest extends \PHPUnit_Framework_TestCase
         $providerADefinition = new Definition();
         $providerADefinition
             ->setClass(ApplicationDataProviderA::class)
-            ->addTag('spa.app_data_provider');
+            ->addTag('frontend.spa.app_data_provider');
 
         // provider B definition
         $providerBDefinition = new Definition();
         $providerBDefinition
             ->setClass(ApplicationDataProviderB::class)
-            ->addTag('spa.app_data_provider');
+            ->addTag('frontend.spa.app_data_provider');
 
         // app data
         $appDataDefinition = new Definition();
@@ -32,16 +32,16 @@ class SpaExtensionTest extends \PHPUnit_Framework_TestCase
 
         // create container
         $container = new ContainerBuilder();
-        $container->setDefinition('spa.provider_a', $providerADefinition);
-        $container->setDefinition('spa.provider_B', $providerBDefinition);
-        $container->setDefinition('spa.app_data', $appDataDefinition);
+        $container->setDefinition('frontend.spa.provider_a', $providerADefinition);
+        $container->setDefinition('frontend.spa.provider_B', $providerBDefinition);
+        $container->setDefinition('frontend.spa.app_data', $appDataDefinition);
 
         // compile container
-        $container->addCompilerPass(new ConfigureWithAppDataPass());
+        $container->addCompilerPass(new ConfigureSpaWithAppDataPass());
         $container->compile();
 
         // data
-        $appData = $container->get('spa.app_data')->getData();
+        $appData = $container->get('frontend.spa.app_data')->getData();
 
         // assert
         $this->assertSame([

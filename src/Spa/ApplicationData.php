@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokil\SpaBundle\ApplicationData;
+namespace Sokil\FrontendBundle\Spa;
 
 class ApplicationData
 {

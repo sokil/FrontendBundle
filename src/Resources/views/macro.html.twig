@@ -1,0 +1,39 @@
+{% macro commonResources() %}
+    {% javascripts
+        '@FrontendBundle/Resources/public/js/vendor.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <!--[if lt IE 9]>
+    {% javascripts
+        '@FrontendBundle/Resources/public/js/ie.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <![endif]-->
+
+    {% stylesheets
+        '@FrontendBundle/Resources/public/css/vendor.css'
+        '@FrontendBundle/Resources/public/css/theme.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endmacro %}
+
+{% macro spaResources() %}
+    {% javascripts
+        '@FrontendBundle/Resources/public/js/components.jade.js'
+
+        '@FrontendBundle/Resources/assets/components/app/container.js'
+        '@FrontendBundle/Resources/assets/components/app/i18n.js'
+        '@FrontendBundle/Resources/assets/components/app/application.js'
+
+        '@FrontendBundle/Resources/assets/components/pagination/PaginationView.js'
+        '@FrontendBundle/Resources/assets/components/popup/PopupView.js'
+        '@FrontendBundle/Resources/assets/components/buttonGroup/ButtonGroupView.js'
+        '@FrontendBundle/Resources/assets/components/progress/ProgressView.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endmacro %}
