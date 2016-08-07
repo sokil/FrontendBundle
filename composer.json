@@ -1,6 +1,6 @@
 {
-    "name": "sokil/frontend-kit-bundle",
-    "description": "Frontent components to quick start frontend app",
+    "name": "sokil/frontend-bundle",
+    "description": "Frontend components to quick start frontend app",
     "license": "MIT",
     "authors": [
         {
