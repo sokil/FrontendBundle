@@ -32,23 +32,9 @@ class IndexController extends Controller
             throw $this->createAccessDeniedException();
         }
 
-        // @todo: move CSRF token to provider
-        /* @var $csrfProvider \Symfony\Component\Security\Csrf\CsrfTokenManager */
-        $csrfProvider = $this->get('security.csrf.token_manager');
-        $csrfToken = $csrfProvider->getToken('common')->getValue();
-
-        // prepare application data
-        $applicationData = [
-            // @todo: move request parameters to provider
-            'locale'    => $request->getLocale(),
-            // @todo: move locales to provider
-            'locales'   => $this->container->getParameter('locales'),
-            // @todo: move CSRF token to provider
-            'csrf'      => $csrfToken,
-        ];
-
+        $applicationData = null;
         if ($this->applicationData) {
-            $applicationData += $this->applicationData->getData();
+            $applicationData = $this->applicationData->getData();
         }
 
         // render response

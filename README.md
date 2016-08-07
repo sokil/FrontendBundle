@@ -10,7 +10,7 @@ It may be configured as service:
 
 ```yaml
 acme.spa.controller:
-  class: Sokil\SpaBundle\Controller\IndexController
+  class: Sokil\FrontendBundle\Controller\IndexController
   arguments:
     - 'AcmeBundle:Spa:index.html.twig'
   calls:

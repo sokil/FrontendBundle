@@ -10,6 +10,10 @@ class ParameterApplicationDataProvider implements ApplicationDataProviderInterfa
 
     private $parameterList;
 
+    /**
+     * @param ContainerBuilder $container instance of "@service_container" service
+     * @param array $parameterList
+     */
     public function __construct(
         ContainerBuilder $container,
         array $parameterList

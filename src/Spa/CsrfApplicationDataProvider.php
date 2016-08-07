@@ -11,7 +11,7 @@ class CsrfApplicationDataProvider implements ApplicationDataProviderInterface
     private $tokenId;
 
     /**
-     * @param CsrfTokenManager $csrfTokenManager e.g. service "security.csrf.token_manager"
+     * @param CsrfTokenManager $csrfTokenManager e.g. service "@security.csrf.token_manager"
      * @param string $tokenId
      */
     public function __construct(

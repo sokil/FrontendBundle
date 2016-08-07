@@ -2,20 +2,19 @@
 
 namespace Sokil\FrontendBundle\Spa;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpFoundation\RequestStack;
 
-class ParameterApplicationDataProvider implements ApplicationDataProviderInterface
+class LocaleApplicationDataProvider implements ApplicationDataProviderInterface
 {
-    private $container;
+    private $requestStack;
 
-    private $parameterList;
-
+    /**
+     * @param RequestStack $requestStack instance of "@request_stack" service
+     */
     public function __construct(
-        ContainerBuilder $container,
-        array $parameterList
+        RequestStack $requestStack
     ) {
-        $this->container = $container;
-        $this->parameterList = $parameterList;
+        $this->requestStack = $requestStack;
     }
 
     /**
@@ -23,12 +22,8 @@ class ParameterApplicationDataProvider implements ApplicationDataProviderInterfa
      */
     public function getData()
     {
-        $data = [];
-
-        foreach ($this->parameterList as $parameterName) {
-            $data[$parameterName] = $this->container->getParameter($parameterName);
-        }
-
-        return $data;
+        return [
+            'locale' => $this->requestStack->getCurrentRequest()->getLocale(),
+        ];
     }
 }
