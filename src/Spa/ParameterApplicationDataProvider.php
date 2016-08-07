@@ -2,7 +2,7 @@
 
 namespace Sokil\FrontendBundle\Spa;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Container;
 
 class ParameterApplicationDataProvider implements ApplicationDataProviderInterface
 {
@@ -11,11 +11,11 @@ class ParameterApplicationDataProvider implements ApplicationDataProviderInterfa
     private $parameterList;
 
     /**
-     * @param ContainerBuilder $container instance of "@service_container" service
+     * @param Container $container instance of "@service_container" service
      * @param array $parameterList
      */
     public function __construct(
-        ContainerBuilder $container,
+        Container $container,
         array $parameterList
     ) {
         $this->container = $container;
