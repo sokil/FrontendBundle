@@ -17,7 +17,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        pug: {
+        jade: {
             components: {
                 options: {
                     client: true,
@@ -124,7 +124,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('build', [
-        'newer:pug',
+        'newer:jade',
         'newer:less',
         'newer:cssmin',
         'newer:uglify',
