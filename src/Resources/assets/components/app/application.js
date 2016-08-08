@@ -9,11 +9,6 @@ var Application = Marionette.Application.extend({
 
     rootView: null,
 
-    regions: {
-        content: '#content',
-        popup: '#popup'
-    },
-
     /**
      * Initialize application
      *
@@ -43,7 +38,10 @@ var Application = Marionette.Application.extend({
         var RootView = Marionette.LayoutView.extend({
             el: 'body',
             template: false,
-            regions: options.regions || this.regions,
+            regions: options.regions || {
+                content: '#content',
+                popup: '#popup'
+            },
         });
         this.rootView = new RootView();
         this.rootView.render();
