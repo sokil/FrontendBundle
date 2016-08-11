@@ -71,6 +71,7 @@ module.exports = function (grunt) {
                         'bower_components/underscore/underscore.js',
                         'bower_components/backbone/backbone.js',
                         'bower_components/marionette/lib/backbone.marionette.js',
+                        'bower_components/bootstrap/dist/js/bootstrap.js',
                         "node_modules/jade/runtime.js"
                     ]
                 }
