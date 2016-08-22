@@ -2,7 +2,7 @@
 
 namespace Sokil\FrontendBundle\Spa;
 
-class ApplicationData
+class ApplicationData implements ApplicationDataProviderInterface
 {
     /**
      * @var array
@@ -11,11 +11,28 @@ class ApplicationData
 
     /**
      * Add provider
+     *
      * @param ApplicationDataProviderInterface $provider
      */
     public function addProvider(ApplicationDataProviderInterface $provider)
     {
         $this->providerList[] = $provider;
+
+        return $this;
+    }
+
+    /**
+     * Add providers
+     *
+     * @param array $providers
+     */
+    public function addProviders(array $providers)
+    {
+        foreach ($providers as $provider) {
+            $this->addProvider($provider);
+        }
+
+        return $this;
     }
 
     /**
