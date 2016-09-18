@@ -1,6 +1,29 @@
 Frontend Bundle
 ===============
 
+## Installation
+
+Add composer dependency:
+
+```
+composer require sokil/frontend-bundle
+```
+
+Add bundle to AppKernel:
+```php
+<?php
+
+class AppKernel extends Kernel
+{
+    public function registerBundles()
+    {
+        $bundles = array(
+            new Sokil\FrontendBundle\FrontendBundle(),
+        );
+    }
+}
+```
+
 ## Single Page Application
 
 ### Controller
