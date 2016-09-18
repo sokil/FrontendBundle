@@ -24,6 +24,13 @@ class AppKernel extends Kernel
 }
 ```
 
+Build resources:
+```
+bower install
+npm install
+grunt
+```
+
 ## Single Page Application
 
 ### Controller
