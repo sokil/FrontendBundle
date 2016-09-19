@@ -31,6 +31,13 @@ npm install
 grunt
 ```
 
+Bundle uses assetic so you need to register it in assetic config:
+```yaml
+assetic:
+    bundles:
+        - FrontendBundle
+```
+
 ## Single Page Application
 
 ### Controller
