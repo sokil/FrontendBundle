@@ -173,17 +173,21 @@ options.router.processAppRoutes(bundle2Router, bundle2Router.routes);
 
 ### Service container
 
-Container is a registry to build and get already built servies. Service definitions, passed as first Container argument, is just an object with methods to build service instances:
+Container is a registry to build and get already built servies. Service definitions, passed as first Container argument, is just an object with methods to build service instances, where `this`  refers to `Container` instance:
 
 ```javascript 
 acmeServiceDefinition = {
     someService: function() {
-        return new Service();
+        return new SomeService(this.get('otherService'));
+    },
+    otherService: function() {
+        return new OtherService();
     }
 }
 ```
 
 Definitions also may be merged and passed to container:
+
 ```javascript
 options.container = new Container(_.extend(
         {},
