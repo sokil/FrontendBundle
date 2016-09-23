@@ -140,15 +140,17 @@ on page, use macro from `src/Resources/views/macro.html.twig`:
     </body>
     {{ frontend.commonJsResources() }}
     <script type="text/javascript">
-        // app options may be accessed through applicationData variable
-        var options = {{ applicationData|json_encode|raw }};
-        // router may be passed as option
-        options.router = new AcmeRouter();
-        // container with fromtend services may be passed as option
-        options.container = new Container(acmeServiceDefinition);
-        // start app
-        window.app = new Application(options);
-        window.app.start();
+        (function() {
+            // app options may be accessed through applicationData variable
+            var options = {{ applicationData|json_encode|raw }};
+            // router may be passed as option
+            options.router = new AcmeRouter();
+            // container with fromtend services may be passed as option
+            options.container = new Container(acmeServiceDefinition);
+            // start app
+            window.app = new Application(options);
+            window.app.start();
+        })();
     </script>
 </html>
 ```
