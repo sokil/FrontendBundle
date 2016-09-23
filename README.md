@@ -43,7 +43,8 @@ assetic:
 ### Controller
 
 We need to configure our controller, responsible for rendering single page application.
-It may be configured as service:
+
+You can use already prepared controller as service:
 
 ```yaml
 acme.spa.controller:
@@ -52,6 +53,34 @@ acme.spa.controller:
     - 'AcmeBundle:Spa:index.html.twig'
   calls:
     - [setContainer, ["@service_container"]]
+```
+
+Or use own controller:
+```php
+
+<?php
+
+<?php
+
+namespace Acme\SiteBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+
+class SpaController extends Controller
+{
+    public function indexAction(Request $request)
+    {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        // render response
+        return $this->render('SiteBundle:Spa:index.html.twig', [
+            'applicationData' => $this->get('acme.spa.app_data')->getData(), // optional appdata
+        ]);
+    }
+}
 ```
 
 If some additional data required to be passed from backend to frontend, this may be done through `Application data`.
