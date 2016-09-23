@@ -72,7 +72,8 @@ module.exports = function (grunt) {
                         'bower_components/backbone/backbone.js',
                         'bower_components/marionette/lib/backbone.marionette.js',
                         'bower_components/bootstrap/dist/js/bootstrap.js',
-                        "node_modules/jade/runtime.js"
+                        "node_modules/jade/runtime.js",
+                        "node_modules/requirejs/require.js"
                     ]
                 }
             },
@@ -95,6 +96,14 @@ module.exports = function (grunt) {
             }
         },
         copy: {
+            tinymce: {
+                expand: true,
+                cwd: 'bower_components/tinymce/',
+                src: [
+                    '**'
+                ],
+                dest: 'Resources/public/js/tinymce'
+            },
             fonts: {
                 expand: true,
                 flatten: true,

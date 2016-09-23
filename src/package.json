@@ -6,6 +6,7 @@
     "author": "Dmytro Sokil <dmytro.sokil@gmail.com>",
     "license": "MIT",
     "dependencies": {
+        "requirejs": "2.1.20",
         "jade": "1.*",
         "grunt": "~0.4.5",
         "grunt-contrib-uglify": "2.0.0",
