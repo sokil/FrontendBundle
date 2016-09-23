@@ -123,6 +123,8 @@ which return map of application parameters.
 
 ## View
 
+### Template
+
 View renders `Marionette 2` application and starts it. `Bootstrap 3` used as UI framework. For adding some CSS and JS resorses 
 on page, use macro from `src/Resources/views/macro.html.twig`:
 
@@ -141,12 +143,56 @@ on page, use macro from `src/Resources/views/macro.html.twig`:
         // app options may be accessed through applicationData variable
         var options = {{ applicationData|json_encode|raw }};
         // router may be passed as option
-        options.router = new Router();
+        options.router = new AcmeRouter();
         // container with fromtend services may be passed as option
-        options.container = new Container(serviceDefinition);
+        options.container = new Container(acmeServiceDefinition);
         // start app
         window.app = new Application(options);
         window.app.start();
     </script>
 </html>
+```
+
+### Router
+
+Router is instance of `Backbone.Router`. Also you can use `Marionette.AppRouter`.
+
+If you have few routes, you can merge them into one router:
+
+```javascript
+// create instance of router
+options.router = new Marionette.AppRouter();
+
+// add first router
+var bundle1Router = new Bundle1Router();
+options.router.processAppRoutes(bundle1Router, bundle1Router.routes);
+// add second router
+var bundle2Router = new Bundle2Router();
+options.router.processAppRoutes(bundle2Router, bundle2Router.routes);
+```
+
+### Service container
+
+Container is a registry to build and get already built servies. Service definitions, passed as first Container argument, is just an object with methods to build service instances:
+
+```javascript 
+acmeServiceDefinition = {
+    someService: function() {
+        return new Service();
+    }
+}
+```
+
+Definitions also may be merged and passed to container:
+```javascript
+options.container = new Container(_.extend(
+        {},
+        Bundle1ServiceDefinition,
+        Bundle2ServiceDefinition
+));
+```
+
+Services then may be get from container:
+```php
+var someService = app.container.get('someService');
 ```
