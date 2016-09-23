@@ -38,17 +38,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-        less: {
-            theme: {
-                files: {
-                    "Resources/public/css/theme.css": [
-                        "Resources/assets/css/mixin.less",
-                        "Resources/assets/css/bootstrap.theme.less",
-                        "Resources/assets/css/site.theme.less"
-                    ]
-                }
-            }
-        },
         cssmin: {
             vendors: {
                 files: {
@@ -135,7 +124,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'newer:jade',
-        'newer:less',
         'newer:cssmin',
         'newer:uglify',
         'copy'
