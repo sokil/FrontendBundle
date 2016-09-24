@@ -12,11 +12,22 @@ var Application = Marionette.Application.extend({
     /**
      * Initialize application
      *
-     * @param object options
+     * @param {object} options
      */
     initialize: function(options) {
 
         var self = this;
+
+        // init options with default values
+        options = _.extend({
+            router: null,               // instabce of Backbine.Router
+            container: null,            // instance of Container
+            root: 'body',               // root element of SPA app
+            regions: {                  // regions of root element
+                content: '#content',    // region for content of app
+                popup: '#popup'         // region for popup rendering
+            }
+        }, options);
 
         // set router
         if (options.router instanceof Marionette.AppRouter) {
@@ -36,12 +47,9 @@ var Application = Marionette.Application.extend({
 
         // render root view
         var RootView = Marionette.LayoutView.extend({
-            el: 'body',
+            el: options.root,
             template: false,
-            regions: options.regions || {
-                content: '#content',
-                popup: '#popup'
-            },
+            regions: options.regions
         });
         this.rootView = new RootView();
         this.rootView.render();

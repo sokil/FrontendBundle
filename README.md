@@ -136,7 +136,8 @@ on page, use macro from `src/Resources/views/macro.html.twig`:
         {{ frontend.commonCssResources() }}
     </head>
     <body>
-    
+        <div id="content"></div>
+        <div id="popup"></div>
     </body>
     {{ frontend.commonJsResources() }}
     <script type="text/javascript">
@@ -147,6 +148,14 @@ on page, use macro from `src/Resources/views/macro.html.twig`:
             options.router = new AcmeRouter();
             // container with fromtend services may be passed as option
             options.container = new Container(acmeServiceDefinition);
+            // root element of SPA app
+            // optional, `body` used by default
+            options.root = 'body';
+            // regions of root app, optional
+            options.regions = {
+                content: '#content', // region for content of app
+                popup: '#popup'      // region for popup rendering
+            }
             // start app
             window.app = new Application(options);
             window.app.start();
@@ -154,6 +163,14 @@ on page, use macro from `src/Resources/views/macro.html.twig`:
     </script>
 </html>
 ```
+
+### Regions
+
+Application refers to the root `app.rootView` view , which handles root element of the SPA application.
+Root element may be configured in app options or used default value `body`. Root element holds some 
+regions where different functinnality rendered. Main contebnt renders to `app.rootView.content` region, 
+and popup renders to  `app.rootView.popup` region. You can pass your own regions and refers to them 
+through `app.rootView`: 
 
 ### Router
 
@@ -201,4 +218,23 @@ options.container = new Container(_.extend(
 Services then may be get from container:
 ```php
 var someService = app.container.get('someService');
+```
+
+### Popup
+
+Popups must extend `PopupView`:
+
+```javascript
+var MyPopupView = PopupView.extend({
+    
+    events: {
+        'click .save': 'saveButtonClickListener'
+    },
+
+    title: 'My Popup',
+    
+    buttons: [
+        {class: 'btn-primary save', title: 'Save'}
+    ]
+}
 ```
