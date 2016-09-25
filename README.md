@@ -146,6 +146,8 @@ on page, use macro from `src/Resources/views/macro.html.twig`:
             var options = {{ applicationData|json_encode|raw }};
             // router may be passed as option
             options.router = new AcmeRouter();
+            // default router
+            options.defaultRouter = 'someRoute';
             // container with fromtend services may be passed as option
             options.container = new Container(acmeServiceDefinition);
             // root element of SPA app
@@ -188,6 +190,22 @@ options.router.processAppRoutes(bundle1Router, bundle1Router.routes);
 // add second router
 var bundle2Router = new Bundle2Router();
 options.router.processAppRoutes(bundle2Router, bundle2Router.routes);
+```
+
+To set default route, use option `defaultRoute`:
+
+```javascript
+var Bundle1Router = new Backbone.Router({
+    routes: {
+        '/some/route': 'someRoute'
+    },
+
+    someRoute: function() {
+        // ...
+    }
+});
+
+options.defaultRoute = 'someRoute';
 ```
 
 ### Service container

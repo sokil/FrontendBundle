@@ -21,6 +21,7 @@ var Application = Marionette.Application.extend({
         // init options with default values
         options = _.extend({
             router: null,               // instabce of Backbine.Router
+            defaultRoute: null,         // default route
             container: null,            // instance of Container
             root: 'body',               // root element of SPA app
             regions: {                  // regions of root element
@@ -44,6 +45,12 @@ var Application = Marionette.Application.extend({
                 this.container = new Container();
             }
         }
+
+        // default route
+        if (!options.defaultRoute) {
+            options.defaultRoute = this.router.routes[0];
+        }
+        this.router.route("", options.defaultRoute);
 
         // render root view
         var RootView = Marionette.LayoutView.extend({
