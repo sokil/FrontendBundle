@@ -38,6 +38,15 @@ module.exports = function (grunt) {
                 }
             }
         },
+        less: {
+            theme: {
+                files: {
+                    "Resources/public/css/theme.css": [
+                        "Resources/assets/css/theme.less"
+                    ]
+                }
+            }
+        },
         cssmin: {
             vendors: {
                 files: {

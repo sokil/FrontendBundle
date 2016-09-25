@@ -1,0 +1,64 @@
+/* simple element */
+html {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 30px 0 0 0;
+}
+
+/* modal */
+.modal {
+  &-header {
+    border-bottom: 0;
+  }
+  &-content {
+    .border-radius(0);
+  }
+  &-footer {
+    border-top: 0;
+    .btn {
+      border: 0;
+    }
+    .btn-default {
+      box-shadow: none;
+    }
+  }
+}
+
+/* block */
+.block {
+  background: #ffffff;
+  box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+
+  .border-radius(4px);
+
+  .title {
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  .content.no-border {
+    padding: 0px;
+  }
+}
+
+/* margins */
+.top-space {
+  margin-top: 20px;
+}
+
+.bottom-space {
+  margin-bottom: 20px;
+}
