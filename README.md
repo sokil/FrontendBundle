@@ -145,9 +145,7 @@ on page, use macro from `src/Resources/views/macro.html.twig`:
             // app options may be accessed through applicationData variable
             var options = {{ applicationData|json_encode|raw }};
             // router may be passed as option
-            options.router = new AcmeRouter();
-            // default router
-            options.defaultRouter = 'someRoute';
+            options.router = AcmeRouter;
             // container with fromtend services may be passed as option
             options.container = new Container(acmeServiceDefinition);
             // root element of SPA app
@@ -178,7 +176,7 @@ through `app.rootView`:
 
 Router is instance of `Backbone.Router`. Also you can use `Marionette.AppRouter`.
 
-If your app consists only one router, pass it to `router` options:
+If your app has only one router, pass it to `router` option:
 
 ```javascript
 window.app = new Application({
