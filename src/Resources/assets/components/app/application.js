@@ -20,8 +20,9 @@ var Application = Marionette.Application.extend({
 
         // init options with default values
         options = _.extend({
-            router: null,               // instabce of Backbine.Router
-            defaultRoute: null,         // default route
+            router: null,               // Backbone.Router
+            routers: [],                // array of Backbone.Router, omitted if `router` passed
+            defaultRoute: null,         // default route, used with `routers` option
             container: null,            // instance of Container
             root: 'body',               // root element of SPA app
             regions: {                  // regions of root element
@@ -31,10 +32,49 @@ var Application = Marionette.Application.extend({
         }, options);
 
         // set router
-        if (options.router instanceof Marionette.AppRouter) {
-            this.router = options.router;
+        if (options.router) {
+            this.router = new options.router;
+            if (!(this.router instanceof Backbone.Router)) {
+                throw new Error('Router must extend Backbone.Router');
+            }
         } else {
+            if (!_.isArray(options.routers) || _.isEmpty(options.routers)) {
+                throw new Error('Routes not specified');
+            }
+
+            // create router
             this.router = new Marionette.AppRouter();
+
+            // check default route passed
+            var defaultRoute = options.defaultRoute;
+
+            // set routes
+            _.each(
+                options.routers,
+                function(Router) {
+                    var router = new Router();
+
+                    this.router.processAppRoutes(router, router.routes);
+
+                    // default route
+                    if (_.isEmpty(defaultRoute)) {
+                        defaultRoute = [router, _,values(router.routes)[0]];
+                    }
+
+                    // set default route
+                    if (defaultRoute[0] === Router) {
+                        this.router.route(
+                            "",
+                            "defaultRoute",
+                            _.bind(
+                                router[defaultRoute[1]],
+                                router
+                            )
+                        )
+                    }
+                },
+                this
+            );
         }
 
         // set container definition
@@ -45,12 +85,6 @@ var Application = Marionette.Application.extend({
                 this.container = new Container();
             }
         }
-
-        // default route
-        if (!options.defaultRoute) {
-            options.defaultRoute = this.router.routes[0];
-        }
-        this.router.route("", options.defaultRoute);
 
         // render root view
         var RootView = Marionette.LayoutView.extend({

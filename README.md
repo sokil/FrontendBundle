@@ -178,19 +178,27 @@ through `app.rootView`:
 
 Router is instance of `Backbone.Router`. Also you can use `Marionette.AppRouter`.
 
-If you have few routes, you can merge them into one router:
+If your app consists only one router, pass it to `router` options:
 
 ```javascript
-// create instance of router
-options.router = new Marionette.AppRouter();
-
-// add first router
-var bundle1Router = new Bundle1Router();
-options.router.processAppRoutes(bundle1Router, bundle1Router.routes);
-// add second router
-var bundle2Router = new Bundle2Router();
-options.router.processAppRoutes(bundle2Router, bundle2Router.routes);
+window.app = new Application({
+    router: Bundle1Router,
+});
 ```
+
+Your router then MUST define default router.
+
+If you have few routes, you can pass them all in `routers` option:
+
+```javascript
+window.app = new Application({
+    routers: [
+        Bundle1Router,
+        Bundle2Router
+    ]
+});
+```
+
 
 To set default route, use option `defaultRoute`:
 
@@ -205,7 +213,13 @@ var Bundle1Router = new Backbone.Router({
     }
 });
 
-options.defaultRoute = 'someRoute';
+window.app = new Application({
+    routers: [
+        Bundle1Router,
+        Bundle2Router
+    ],
+    defaultRoute: [Bundle1Router, 'someRoute'];
+});
 ```
 
 ### Service container
