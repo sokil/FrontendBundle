@@ -60,9 +60,6 @@ acme.spa.controller:
 
 Or use own controller:
 ```php
-
-<?php
-
 <?php
 
 namespace Acme\SiteBundle\Controller;
