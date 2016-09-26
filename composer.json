@@ -20,5 +20,8 @@
         "psr-4": {
             "Sokil\\FrontendBundle\\": ["src/", "tests/"]
         }
+    },
+    "suggest": {
+        "sokil/deploy-bundle": "Deploy symfony2 apps"
     }
 }
