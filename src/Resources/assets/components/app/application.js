@@ -78,9 +78,8 @@ var Application = Marionette.Application.extend({
         }
 
         // set container definition
-        if (options.serviceDefinition) {
-            this.container = new Container(options.serviceDefinition);
-        }
+        var serviceDefinition = options.serviceDefinition || {};
+        this.container = new Container(serviceDefinition);
 
         // render root view
         var RootView = Marionette.LayoutView.extend({
