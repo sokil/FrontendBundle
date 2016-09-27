@@ -95,14 +95,6 @@ module.exports = function (grunt) {
             }
         },
         copy: {
-            tinymce: {
-                expand: true,
-                cwd: 'bower_components/tinymce/',
-                src: [
-                    '**'
-                ],
-                dest: 'Resources/public/js/tinymce'
-            },
             fonts: {
                 expand: true,
                 flatten: true,

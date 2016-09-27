@@ -9,7 +9,6 @@
       "marionette": "2.4.2",
       "bootstrap": "3.3.4",
       "respond": "1.4.2",
-      "html5shiv": "3.7.3",
-      "tinymce": "4.2.3"
+      "html5shiv": "3.7.3"
   }
 }

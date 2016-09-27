@@ -23,7 +23,8 @@ var Application = Marionette.Application.extend({
             router: null,               // Backbone.Router
             routers: [],                // array of Backbone.Router, omitted if `router` passed
             defaultRoute: null,         // default route, used with `routers` option
-            serviceDefinition: null,    // object with service definitions
+            serviceDefinition: null,    // object with service definitions\]
+            requireJs: null,            // requireJs configuration
             root: 'body',               // root element of SPA app
             regions: {                  // regions of root element
                 content: '#content',    // region for content of app
@@ -80,6 +81,25 @@ var Application = Marionette.Application.extend({
         // set container definition
         var serviceDefinition = options.serviceDefinition || {};
         this.container = new Container(serviceDefinition);
+
+        // requireJs config
+        var requireJsConfig = {
+            baseUrl: '/bundles/'   // all dependencies will be placed in assets dir
+        };
+
+        if (options.requireJs) {
+            if (options.requireJs.paths) {
+                requireJsConfig.paths = options.requireJs.paths;
+            }
+            if (options.requireJs.shim) {
+                requireJsConfig.shim = options.requireJs.shim;
+            }
+        }
+
+        requirejs.config(requireJsConfig);
+
+        // configure already loaded dependencies
+        define('jquery', [], function() { return jQuery; });
 
         // render root view
         var RootView = Marionette.LayoutView.extend({
