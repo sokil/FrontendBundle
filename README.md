@@ -1,7 +1,6 @@
 Frontend Bundle
 ===============
 
-[![Latest Stable Version](https://poser.pugx.org/sokil/frontend-bundle/v/stable.png)](https://packagist.org/packages/sokil/frontend-bundle)
 [![Total Downloads](http://img.shields.io/packagist/dt/sokil/frontend-bundle.svg)](https://packagist.org/packages/sokil/frontend-bundle)
 
 ## Installation
@@ -147,7 +146,7 @@ on page, use macro from `src/Resources/views/macro.html.twig`:
             // router may be passed as option
             options.router = AcmeRouter;
             // container with fromtend services may be passed as option
-            options.container = new Container(acmeServiceDefinition);
+            options.serviceDefinition = AcmeServiceDefinition;
             // root element of SPA app
             // optional, `body` used by default
             options.root = 'body';
@@ -222,10 +221,10 @@ window.app = new Application({
 
 ### Service container
 
-Container is a registry to build and get already built servies. Service definitions, passed as first Container argument, is just an object with methods to build service instances, where `this`  refers to `Container` instance:
+Container is a registry to build and get already built servies. Service definition is just an object with methods to build service instances, where `this`  refers to `Container` instance:
 
 ```javascript 
-acmeServiceDefinition = {
+AcmeServiceDefinition = {
     someService: function() {
         return new SomeService(this.get('otherService'));
     },
@@ -238,14 +237,15 @@ acmeServiceDefinition = {
 Definitions also may be merged and passed to container:
 
 ```javascript
-options.container = new Container(_.extend(
-        {},
-        Bundle1ServiceDefinition,
-        Bundle2ServiceDefinition
-));
+options.serviceDefinition = _.extend(
+    {},
+    Bundle1ServiceDefinition,
+    Bundle2ServiceDefinition
+);
 ```
 
 Services then may be get from container:
+
 ```php
 var someService = app.container.get('someService');
 ```
@@ -254,7 +254,7 @@ var someService = app.container.get('someService');
 
 Popups must extend `PopupView`:
 
-```javascript
+```javascriptpassed as first Container argument,
 var MyPopupView = PopupView.extend({
     
     events: {
