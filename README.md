@@ -1,7 +1,6 @@
 Frontend Bundle
 ===============
 
-[![Latest Stable Version](https://poser.pugx.org/sokil/frontend-bundle/v/stable.png)](https://packagist.org/packages/sokil/frontend-bundle)
 [![Total Downloads](http://img.shields.io/packagist/dt/sokil/frontend-bundle.svg)](https://packagist.org/packages/sokil/frontend-bundle)
 
 ## Installation
