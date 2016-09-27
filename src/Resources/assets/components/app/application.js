@@ -23,7 +23,7 @@ var Application = Marionette.Application.extend({
             router: null,               // Backbone.Router
             routers: [],                // array of Backbone.Router, omitted if `router` passed
             defaultRoute: null,         // default route, used with `routers` option
-            container: null,            // instance of Container
+            serviceDefinition: null,    // object with service definitions
             root: 'body',               // root element of SPA app
             regions: {                  // regions of root element
                 content: '#content',    // region for content of app
@@ -78,12 +78,8 @@ var Application = Marionette.Application.extend({
         }
 
         // set container definition
-        if (options.container) {
-            if (options.container instanceof Container) {
-                this.container = options.container;
-            } else {
-                this.container = new Container();
-            }
+        if (options.serviceDefinition) {
+            this.container = new Container(options.serviceDefinition);
         }
 
         // render root view
