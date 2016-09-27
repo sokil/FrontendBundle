@@ -147,7 +147,7 @@ on page, use macro from `src/Resources/views/macro.html.twig`:
             // router may be passed as option
             options.router = AcmeRouter;
             // container with fromtend services may be passed as option
-            options.container = new Container(acmeServiceDefinition);
+            options.serviceDefinition = AcmeServiceDefinition;
             // root element of SPA app
             // optional, `body` used by default
             options.root = 'body';
