@@ -51,7 +51,8 @@ module.exports = function (grunt) {
             vendors: {
                 files: {
                     'Resources/public/css/vendor.css': [
-                        'bower_components/bootstrap/dist/css/bootstrap.min.css'
+                        'bower_components/bootstrap/dist/css/bootstrap.min.css',
+                        'Resources/public/css/theme.css'
                     ]
                 }
             }
@@ -108,7 +109,7 @@ module.exports = function (grunt) {
                 src: [
                     'bower_components/bootstrap/dist/fonts/*'
                 ],
-                dest: '../../../web/fonts/'
+                dest: 'Resources/public/fonts/'
             },
             images: {
                 expand: true,
@@ -133,8 +134,9 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'newer:jade',
-        'newer:cssmin',
         'newer:uglify',
+        'newer:less',
+        'newer:cssmin',
         'copy'
     ]);
 
