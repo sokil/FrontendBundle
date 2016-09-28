@@ -172,6 +172,32 @@ var Application = Marionette.Application.extend({
         return template(data);
     },
 
+    loadCss: function (resources) {
+        _.each(resources, function(url) {
+            var link = document.createElement("link");
+            link.type = "text/css";
+            link.rel = "stylesheet";
+            link.href = url;
+            document.getElementsByTagName("head")[0].appendChild(link);
+        });
+    },
+
+    loadImages: function (resources, callable) {
+        var resourcesInQueue = resources.length;
+        _.each(resources, function(url) {
+            var img = document.createElement("img");
+            img.onload = function() {
+                resourcesInQueue--;
+                if (0 === resourcesInQueue) {
+                    if (typeof callback === 'function') {
+                        callable();
+                    }
+                }
+            };
+            img.src = url;
+        });
+    },
+
     /**
      * Render popup
      *
