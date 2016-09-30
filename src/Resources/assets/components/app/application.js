@@ -100,6 +100,7 @@ var Application = Marionette.Application.extend({
 
         // configure already loaded dependencies
         define('jquery', [], function() { return jQuery; });
+        require(['UrlMutator']);
 
         // render root view
         var RootView = Marionette.LayoutView.extend({
