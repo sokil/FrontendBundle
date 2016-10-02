@@ -57,9 +57,7 @@ assetic:
 
 ### Single Page Application
 
-We need to configure our controller, responsible for rendering single page application.
-
-You can use already prepared controller as service:
+We may configure pre-defined controller, responsible for rendering single page application, as service:
 
 ```yaml
 acme.spa.controller:
@@ -70,7 +68,7 @@ acme.spa.controller:
     - [setContainer, ["@service_container"]]
 ```
 
-Or use own controller:
+Or use your own controller:
 ```php
 <?php
 
@@ -94,6 +92,8 @@ class SpaController extends Controller
     }
 }
 ```
+
+See how to convigure spa in view `SiteBundle:Spa:index.html.twig` below in [View section ](#view).
 
 If some additional data required to be passed from backend to frontend, this may be done through `Application data`.
 
