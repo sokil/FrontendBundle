@@ -40,9 +40,9 @@ assetic:
         - FrontendBundle
 ```
 
-## Single Page Application
+## Controller
 
-### Controller
+### Single Page Application
 
 We need to configure our controller, responsible for rendering single page application.
 
@@ -124,7 +124,9 @@ which return map of application parameters.
 
 ### Handling json requests
 
-Backbone models send json requests. To enable support, add FOSRestBundle, and configure serializer.
+Backbone models send json requests. 
+
+To enable support, you may add FOSRestBundle, and configure serializer.
 `app/AppKernel.php`:
 ```
 new FOS\RestBundle\FOSRestBundle(),
@@ -136,6 +138,15 @@ framework:
     serializer:
         enabled: true
         enable_annotations: true
+```
+
+It you don't need whole bundle, just register listener, which converts json request to array:
+```
+services:
+    json_request_listener:
+        class: Sokil\FrontendBundle\EventListener\JsonRequestListener
+        tags:
+            - {name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: -255 }
 ```
 
 ## View
