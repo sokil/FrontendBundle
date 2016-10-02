@@ -20,10 +20,9 @@ var Application = Marionette.Application.extend({
 
         // init options with default values
         options = _.extend({
-            router: null,               // Backbone.Router
             routers: [],                // array of Backbone.Router, omitted if `router` passed
             defaultRoute: null,         // default route, used with `routers` option
-            serviceDefinition: null,    // object with service definitions\]
+            serviceDefinitions: null,    // object with service definitions\]
             requireJs: null,            // requireJs configuration
             root: 'body',               // root element of SPA app
             regions: {                  // regions of root element
@@ -33,53 +32,46 @@ var Application = Marionette.Application.extend({
         }, options);
 
         // set router
-        if (options.router) {
-            this.router = new options.router;
-            if (!(this.router instanceof Backbone.Router)) {
-                throw new Error('Router must extend Backbone.Router');
-            }
-        } else {
-            if (!_.isArray(options.routers) || _.isEmpty(options.routers)) {
-                throw new Error('Routes not specified');
-            }
-
-            // create router
-            this.router = new Marionette.AppRouter();
-
-            // check default route passed
-            var defaultRoute = options.defaultRoute;
-
-            // set routes
-            _.each(
-                options.routers,
-                function(Router) {
-                    var router = new Router();
-
-                    this.router.processAppRoutes(router, router.routes);
-
-                    // default route
-                    if (_.isEmpty(defaultRoute)) {
-                        defaultRoute = [router, _,values(router.routes)[0]];
-                    }
-
-                    // set default route
-                    if (defaultRoute[0] === Router) {
-                        this.router.route(
-                            "",
-                            "defaultRoute",
-                            _.bind(
-                                router[defaultRoute[1]],
-                                router
-                            )
-                        )
-                    }
-                },
-                this
-            );
+        if (!_.isArray(options.routers) || _.isEmpty(options.routers)) {
+            throw new Error('Routes not specified');
         }
 
+        // create router
+        this.router = new Marionette.AppRouter();
+
+        // check default route passed
+        var defaultRoute = options.defaultRoute;
+
+        // set routes
+        _.each(
+            options.routers,
+            function(Router) {
+                var router = new Router();
+
+                this.router.processAppRoutes(router, router.routes);
+
+                // set default route
+                if (defaultRoute[0] === Router) {
+                    this.router.route(
+                        "",
+                        "defaultRoute",
+                        _.bind(
+                            router[defaultRoute[1]],
+                            router
+                        )
+                    )
+                }
+            },
+            this
+        );
+
         // set container definition
-        var serviceDefinition = options.serviceDefinition || {};
+        var serviceDefinition = {};
+        if (_.isArray(options.serviceDefinitions) && options.serviceDefinitions.length > 0) {
+            for (var i in options.serviceDefinitions) {
+                _.extend(serviceDefinition, options.serviceDefinitions[i]);
+            }
+        }
         this.container = new Container(serviceDefinition);
 
         // requireJs config

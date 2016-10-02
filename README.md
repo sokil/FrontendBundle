@@ -217,16 +217,6 @@ through `app.rootView`:
 
 Router is instance of `Backbone.Router`. Also you can use `Marionette.AppRouter`.
 
-If your app has only one router, pass it to `router` option:
-
-```javascript
-window.app = new Application({
-    router: Bundle1Router,
-});
-```
-
-Your router then MUST define default router.
-
 If you have few routes, you can pass them all in `routers` option:
 
 ```javascript
@@ -279,11 +269,10 @@ AcmeServiceDefinition = {
 Definitions also may be merged and passed to container:
 
 ```javascript
-options.serviceDefinition = _.extend(
-    {},
+options.serviceDefinitions = [
     Bundle1ServiceDefinition,
     Bundle2ServiceDefinition
-);
+];
 ```
 
 Services then may be get from container:
