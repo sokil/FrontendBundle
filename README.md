@@ -120,6 +120,24 @@ acme.spa.some_app_data_provider;
 Provider class must implement `Sokil\FrontendBundle\Spa\ApplicationDataProviderInterface`. It must implement one method `getData()`
 which return map of application parameters.
 
+## Model
+
+### Handling json requests
+
+Backbone models send json requests. To enable support, add FOSRestBundle, and configure serializer.
+`app/AppKernel.php`:
+```
+new FOS\RestBundle\FOSRestBundle(),
+```
+
+`app/config/config.yml`:
+```yaml
+framework:
+    serializer:
+        enabled: true
+        enable_annotations: true
+```
+
 ## View
 
 ### Template
