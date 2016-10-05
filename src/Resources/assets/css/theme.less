@@ -49,18 +49,19 @@ body {
   .content {
     border-top: 1px solid #eeeeee;
     padding: 10px;
-    .empty {
-      text-align: center;
-      padding: 50px 10px;
-      color: #bbbbbb;
-    }
   }
 
   .content.no-border {
-    padding: 0px;
+    padding: 0;
+    overflow: auto;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 10px;
+    color: #bbbbbb;
   }
 }
-
 
 /* margins */
 .top-space {
