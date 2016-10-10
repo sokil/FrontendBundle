@@ -165,7 +165,15 @@ var Application = Marionette.Application.extend({
     },
 
     loadCss: function (resources) {
+        var loadedUrls = [];
         _.each(resources, function(url) {
+            // check if already loaded
+            if (-1 !== loadedUrls.indexOf(url)) {
+                return;
+            }
+            // register as loaded
+            loadedUrls.push(url);
+            // load
             var link = document.createElement("link");
             link.type = "text/css";
             link.rel = "stylesheet";
@@ -205,6 +213,7 @@ var Application = Marionette.Application.extend({
 /**
  * Allow fetch default falues for model
  * @param options
+ * @deprecated use ModelFetchDefaultsTrait
  */
 Backbone.Model.prototype.fetchDefaults = function(options) {
     var self = this;
