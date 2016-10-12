@@ -1,6 +1,8 @@
 Frontend Bundle
 ===============
 
+Single Page Application based on Backbone, Marionette and Twitter Bootstrap.
+
 [![Total Downloads](http://img.shields.io/packagist/dt/sokil/frontend-bundle.svg)](https://packagist.org/packages/sokil/frontend-bundle)
 
 * [Installation](#installation)
@@ -285,7 +287,7 @@ var someService = app.container.get('someService');
 
 Popups must extend `PopupView`:
 
-```javascriptpassed as first Container argument,
+```javascript,
 var MyPopupView = PopupView.extend({
     
     events: {
