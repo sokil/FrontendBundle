@@ -287,7 +287,7 @@ var someService = app.container.get('someService');
 
 Popups must extend `PopupView`:
 
-```javascriptpassed as first Container argument,
+```javascript,
 var MyPopupView = PopupView.extend({
     
     events: {
