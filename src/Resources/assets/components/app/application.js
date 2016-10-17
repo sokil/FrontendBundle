@@ -76,15 +76,19 @@ var Application = Marionette.Application.extend({
 
         // requireJs config
         var requireJsConfig = {
-            baseUrl: '/bundles/'   // all dependencies will be placed in assets dir
+            baseUrl: '/bundles/',   // all dependencies will be placed in assets dir
+            paths: {},
+            shim: {}
         };
 
-        if (options.requireJs) {
-            if (options.requireJs.paths) {
-                requireJsConfig.paths = options.requireJs.paths;
-            }
-            if (options.requireJs.shim) {
-                requireJsConfig.shim = options.requireJs.shim;
+        if (_.isArray(options.requireJs) && options.requireJs.length > 0) {
+            for (var i in options.requireJs) {
+                if (options.requireJs[i].paths) {
+                    _.extend(requireJsConfig.paths, options.requireJs[i].paths);
+                }
+                if (options.requireJs[i].shim) {
+                    _.extend(requireJsConfig.shim, options.requireJs[i].shim);
+                }
             }
         }
 

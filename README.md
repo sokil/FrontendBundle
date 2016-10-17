@@ -16,6 +16,7 @@ Single Page Application based on Backbone, Marionette and Twitter Bootstrap.
     * [Regions](#regions)
     * [Router](#router)
     * [Service container](#service-container)
+    * [RequireJs[(#requirejs)
     * [Popup](#popup)
 
 ## Installation
@@ -255,7 +256,9 @@ window.app = new Application({
 
 ### Service container
 
-Container is a registry to build and get already built servies. Service definition is just an object with methods to build service instances, where `this`  refers to `Container` instance:
+Container is a registry to build and get already built services. 
+Service definition is just an object with methods to build service 
+instances, where `this`  refers to `Container` instance:
 
 ```javascript 
 AcmeServiceDefinition = {
@@ -268,7 +271,7 @@ AcmeServiceDefinition = {
 }
 ```
 
-Definitions also may be merged and passed to container:
+Definitions passed to container by `serviceDefinitions` configuration parameter:
 
 ```javascript
 options.serviceDefinitions = [
@@ -281,6 +284,32 @@ Services then may be get from container:
 
 ```php
 var someService = app.container.get('someService');
+```
+
+### RequireJs
+
+Dependencies may be merged and passed to container:
+
+```javascript
+options.requireJs = [
+    Bundle1RequireJsConfig,
+    Bundle2RequireJsConfig
+];
+```
+
+Every config may math one or both `path` and `shim` parameters:
+
+```javascript
+var Bundle1RequireJsConfig = {
+    paths: {
+        'bundle1_tinymce': 'staticpage/js/tinymce/tinymce.min'
+    },
+    shim: {
+        'bundle1_tinymce': {
+            exports: 'tinymce'
+        }
+    }
+};
 ```
 
 ### Popup
