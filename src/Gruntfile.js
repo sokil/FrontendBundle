@@ -30,10 +30,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     "Resources/public/js/components.jade.js": [
-                        "Resources/assets/components/pagination/*.jade",
-                        "Resources/assets/components/progress/*.jade",
-                        "Resources/assets/components/popup/*.jade",
-                        "Resources/assets/components/buttonGroup/*.jade"
+                        "Resources/assets/components/**/*.jade"
                     ]
                 }
             }
