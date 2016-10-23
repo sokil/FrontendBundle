@@ -81,14 +81,18 @@ var Application = Marionette.Application.extend({
             shim: {}
         };
 
-        if (_.isArray(options.requireJs) && options.requireJs.length > 0) {
-            for (var i in options.requireJs) {
-                if (options.requireJs[i].paths) {
-                    _.extend(requireJsConfig.paths, options.requireJs[i].paths);
-                }
-                if (options.requireJs[i].shim) {
-                    _.extend(requireJsConfig.shim, options.requireJs[i].shim);
-                }
+        if (!_.isArray(options.requireJs) && options.requireJs.length === 0) {
+            options.requireJs = [];
+        }
+
+        options.requireJs.push(FrontendRequireJsConfig);
+
+        for (var i in options.requireJs) {
+            if (options.requireJs[i].paths) {
+                _.extend(requireJsConfig.paths, options.requireJs[i].paths);
+            }
+            if (options.requireJs[i].shim) {
+                _.extend(requireJsConfig.shim, options.requireJs[i].shim);
             }
         }
 

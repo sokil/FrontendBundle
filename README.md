@@ -189,12 +189,20 @@ on page, use macro from `src/Resources/views/macro.html.twig`:
             // app options may be accessed through applicationData variable
             var options = {{ applicationData|json_encode|raw }};
             // router may be passed as option
-            options.router = AcmeRouter;
+            options.router = [
+                AcmeRouter
+            ];
             // container with fromtend services may be passed as option
-            options.serviceDefinition = AcmeServiceDefinition;
+            options.serviceDefinition = [
+                AcmeServiceDefinition
+            ];
             // root element of SPA app
             // optional, `body` used by default
             options.root = 'body';
+            // requirejs
+            options.requirejs = [
+                AcmeRequireJsConfig
+            ]
             // regions of root app, optional
             options.regions = {
                 content: '#content', // region for content of app
@@ -311,6 +319,8 @@ var Bundle1RequireJsConfig = {
     }
 };
 ```
+
+By default, Application already has pre-configured `FrontendRequireJsConfig`. It has some dependencies, e.g. Twitter Typeahead.
 
 ### Popup
 

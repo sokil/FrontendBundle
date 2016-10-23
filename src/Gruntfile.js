@@ -42,6 +42,13 @@ module.exports = function (grunt) {
                         "Resources/assets/css/theme.less"
                     ]
                 }
+            },
+            typeahead: {
+                files: {
+                    "Resources/public/css/typeahead.css": [
+                        "Resources/assets/css/typeahead.less"
+                    ]
+                }
             }
         },
         cssmin: {
@@ -108,6 +115,15 @@ module.exports = function (grunt) {
                     'Resources/assets/images/*'
                 ],
                 dest: 'Resources/public/images/'
+            },
+            typeahead: {
+                expand: true,
+                cwd: 'bower_components/typeahead.js/dist/',
+                src: [
+                    'typeahead.jquery.min.js',
+                    'bloodhound.min.js'
+                ],
+                dest: 'Resources/public/js/typeahead'
             }
         }
     });
