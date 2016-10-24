@@ -61,12 +61,16 @@ body {
   .content {
     border-top: 1px solid #eeeeee;
     padding: 10px;
+    &.no-border {
+      padding: 0;
+      overflow: auto;
+      border-top: none;
+      table {
+        margin-bottom: 0;
+      }
+    }
   }
 
-  .content.no-border {
-    padding: 0;
-    overflow: auto;
-  }
 
   &__empty {
     text-align: center;

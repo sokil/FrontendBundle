@@ -21,19 +21,8 @@
 {% macro spaJsResources() %}
     {% javascripts
         '@FrontendBundle/Resources/public/js/components.jade.js'
-
-        '@FrontendBundle/Resources/assets/components/app/container.js'
-        '@FrontendBundle/Resources/assets/components/app/i18n.js'
-        '@FrontendBundle/Resources/assets/components/app/application.js'
-        '@FrontendBundle/Resources/assets/components/app/FrontendRequireJsConfig.js'
-
-        '@FrontendBundle/Resources/assets/traits/ModelFetchDefaultsTrait.js'
-
-        '@FrontendBundle/Resources/assets/components/pagination/PaginationView.js'
-        '@FrontendBundle/Resources/assets/components/popup/PopupView.js'
-        '@FrontendBundle/Resources/assets/components/buttonGroup/ButtonGroupView.js'
-        '@FrontendBundle/Resources/assets/components/progress/ProgressView.js'
-        '@FrontendBundle/Resources/assets/components/tabPage/TabPageView.js'
+        '@FrontendBundle/Resources/assets/traits/*.js'
+        '@FrontendBundle/Resources/assets/components/*/*.js'
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

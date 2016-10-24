@@ -140,7 +140,6 @@ var Application = Marionette.Application.extend({
                     url,
                     {trigger: true}
                 );
-                return false;
             });
         });
     },
