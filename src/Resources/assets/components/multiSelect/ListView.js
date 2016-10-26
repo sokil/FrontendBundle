@@ -14,27 +14,30 @@ var ListView = Backbone.View.extend({
     checkType: null,
 
     /**
-     * Callable to convert model list item with known structure
-     * Param 'checked': by default checks if model has 'checked' param set to true.
-     * Param 'value: by default get 'value' param of model
+     * Callable to convert model to checked
      *
      * @param model
      */
-    convertModelToListItem: function(model) {
-        return {
-            checked: model.get('checked') === true,
-            value: model.get('value'),
-            id: model.id
-        }
+    modelChecked: function(model) {
+        return model.get('checked') === true;
     },
 
     /**
+     * Callable to convert model to value
      *
      * @param model
-     * @returns {*}
      */
-    modelToValue: function(model) {
+    modelValue: function(model) {
         return model.get('value');
+    },
+
+    /**
+     * Callable to convert model to id
+     *
+     * @param model
+     */
+    modelId: function(model) {
+        return model.id;
     },
 
     /**
@@ -70,9 +73,17 @@ var ListView = Backbone.View.extend({
 
         }
 
-        // define model to list item converter
-        if (typeof params.convertModelToListItem === 'function') {
-            this.convertModelToListItem = params.convertModelToListItem;
+        // define model to list item converters
+        if (typeof params.modelChecked === 'function') {
+            this.modelChecked = params.modelChecked;
+        }
+
+        if (typeof params.modelValue === 'function') {
+            this.modelValue = params.modelValue;
+        }
+
+        if (typeof params.modelId === 'function') {
+            this.modelId = params.modelId;
         }
 
         // buttons
@@ -123,11 +134,37 @@ var ListView = Backbone.View.extend({
         this.$el.html(app.render(
             this.template,
             {
-                list: this.collection.map(this.convertModelToListItem.bind(this)),
+                list: this.collection.map(function() {
+                    return {
+                        id: this.modelId(model),
+                        value: this.modelValue(model),
+                        checked: this.modelChecked(model)
+                    };
+                }.bind(this)),
                 checkType: this.checkType,
                 name: this.name,
                 buttons: this.buttons
             }
         ));
+    },
+
+    /**
+     * Add element to collection
+     *
+     * @param {Backbone.Model} model
+     * @returns {ListView}
+     */
+    add: function(model) {
+        this.collection.add(model);
+        return this;
+    },
+
+    /**
+     * Get collection
+     *
+     * @returns {*}
+     */
+    getCollection: function() {
+        return this.collection;
     }
 });
