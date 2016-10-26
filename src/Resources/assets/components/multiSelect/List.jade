@@ -1,0 +1,18 @@
+table.table
+  form
+    each item in list
+      tr
+        if checkType
+          td
+            input(type=checkType, name=name, checked=item.checked)
+        td= item.value
+        if buttons
+          each button in buttons
+            td
+              - var attributes = {class: button.class}
+              if (button.name)
+                - attributes["data-"+button.name]=true
+              a&attributes(attributes)
+                if button.icon
+                  span(class=button.icon)
+                = button.caption
