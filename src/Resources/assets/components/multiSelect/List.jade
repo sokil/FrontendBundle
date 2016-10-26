@@ -4,7 +4,7 @@ table.table
       tr
         if checkType
           td
-            input(type=checkType, name=name, checked=item.checked)
+            input(type=checkType, name=name + "[]", checked=item.checked, value=item.id)
         td= item.value
         if buttons
           each button in buttons

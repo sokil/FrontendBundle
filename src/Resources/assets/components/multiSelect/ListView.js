@@ -23,7 +23,8 @@ var ListView = Backbone.View.extend({
     convertModelToListItem: function(model) {
         return {
             checked: model.get('checked') === true,
-            value: model.get('value')
+            value: model.get('value'),
+            id: model.id
         }
     },
 
