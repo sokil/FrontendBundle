@@ -127,7 +127,7 @@ var ListView = Backbone.View.extend({
         }
 
         // on collection change re-render list
-        this.listenTo(params.collection, 'change', this.render);
+        this.listenTo(this.collection, 'update', this.render);
     },
 
     render: function() {

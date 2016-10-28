@@ -51,7 +51,7 @@ var MultiTypeaheadView = Marionette.LayoutView.extend({
                 // remote data source
                 if (self.typeahead.remote) {
                     bloodhoundParams.remote = _.extend({
-                        url: _.result(self.listView.collection, 'url'),
+                        url: null,
                         wildcard: '*',
                         transform: function (response) {
                             return response.list;
@@ -67,7 +67,7 @@ var MultiTypeaheadView = Marionette.LayoutView.extend({
                 // prefetch data source
                 if (self.typeahead.prefetch) {
                     bloodhoundParams.prefetch = _.extend({
-                        url: _.result(self.listView.collection, 'url')
+                        url: null
                     }, self.typeahead.prefetch);
                 }
 
