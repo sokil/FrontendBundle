@@ -134,7 +134,7 @@ var ListView = Backbone.View.extend({
         this.$el.html(app.render(
             this.template,
             {
-                list: this.collection.map(function() {
+                list: this.collection.map(function(model) {
                     return {
                         id: this.modelId(model),
                         value: this.modelValue(model),

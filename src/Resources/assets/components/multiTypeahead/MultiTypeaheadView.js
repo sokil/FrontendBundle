@@ -8,12 +8,13 @@ var MultiTypeaheadView = Marionette.LayoutView.extend({
      *
      */
     initialize: function(params) {
-        // init list
-        this.listView = new ListView(params);
-        // init remote data source
-        if (params.remoteDataSource) {
-            this.remoteDataSource = params.remoteDataSource;
+        // init typeahead
+        if (params.typeahead) {
+            this.typeahead = params.typeahead;
         }
+
+        // init list
+        this.listView = new ListView(params.list || {});
     },
 
     /**
@@ -27,12 +28,16 @@ var MultiTypeaheadView = Marionette.LayoutView.extend({
 
         }));
 
+        app.loadCss([
+            '/bundles/frontend/css/typeahead.css'
+        ]);
+
         // init typeahead
         require(
             ['typeahead', 'bloodhound'],
             function() {
                 // prepare data source
-                var source = new Bloodhound({
+                var bloodhoundParams = {
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
                     datumTokenizer: function (datum) {
                         var value = self.listView.modelValue(new Backbone.Model(datum));
@@ -40,22 +45,38 @@ var MultiTypeaheadView = Marionette.LayoutView.extend({
                     },
                     identify: function (datum) {
                         return self.listView.modelId(new Backbone.Model(datum));
-                    },
-                    remote: _.extend({
-                        url: null,
+                    }
+                };
+
+                // remote data source
+                if (self.typeahead.remote) {
+                    bloodhoundParams.remote = _.extend({
+                        url: _.result(self.listView.collection, 'url'),
                         wildcard: '*',
                         transform: function (response) {
                             return response.list;
                         }
-                    }, self.remoteDataSource)
-                });
+                    }, self.typeahead.remote);
+                }
+
+                // local data source
+                if (self.typeahead.local) {
+                    bloodhoundParams.local = self.typeahead.local;
+                }
+
+                // prefetch data source
+                if (self.typeahead.prefetch) {
+                    bloodhoundParams.prefetch = _.extend({
+                        url: _.result(self.listView.collection, 'url')
+                    }, self.typeahead.prefetch);
+                }
 
                 // init typeahead
                 this.$('[data-typeahead]')
                     .typeahead(
                         null,
                         {
-                            source: source,
+                            source: new Bloodhound(bloodhoundParams),
                             display: function(datum) {
                                 return self.listView.modelValue(new Backbone.Model(datum));
                             },
