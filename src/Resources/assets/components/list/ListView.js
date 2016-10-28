@@ -89,6 +89,7 @@ var ListView = Backbone.View.extend({
         // buttons
         if (_.isArray(params.buttons) && params.buttons.length > 0) {
             this.buttons = _.map(
+                params.buttons,
                 function(button) {
                     button = _.extend({
                         name: null,     // required. name to unique identify button
@@ -116,7 +117,6 @@ var ListView = Backbone.View.extend({
 
                     return button;
                 },
-                params.buttons,
                 this
             );
         }

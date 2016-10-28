@@ -7,7 +7,7 @@ table.table
       td= item.value
       if buttons
         each button in buttons
-          td
+          td.text-right
             - var attributes = {class: button.class}
             if (button.name)
               - attributes["data-"+button.name]=true
