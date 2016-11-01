@@ -1,10 +1,19 @@
-table.table
-  each item in list
+table.table.table-hover.table-striped
+  if showColumnHeader
+    tr
+      if checkType
+        th
+      each column in columns
+        th= column.caption
+      if buttons
+        th
+  each item in collection
     tr
       if checkType
         td
-          input(type=checkType, name=name + "[]", checked=item.checked, value=item.id)
-      td= item.value
+          input(type=checkType, name=checkName + "[]", checked=item.checked, value=item.id)
+      each column in columns
+        td= item[column.name]
       if buttons
         each button in buttons
           td.text-right

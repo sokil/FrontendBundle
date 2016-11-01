@@ -14,36 +14,28 @@ var ListView = Backbone.View.extend({
     checkType: null,
 
     /**
+     * Name of check input
+     */
+    checkName: null,
+
+    /**
      * Callable to convert model to checked
      *
      * @param model
      */
-    modelChecked: function(model) {
+    itemChecked: function(model) {
         return model.get('checked') === true;
     },
 
     /**
-     * Callable to convert model to value
-     *
-     * @param model
+     * Is header visible
      */
-    modelValue: function(model) {
-        return model.get('value');
-    },
+    showColumnHeader: false,
 
     /**
-     * Callable to convert model to id
-     *
-     * @param model
+     * List schema
      */
-    modelId: function(model) {
-        return model.id;
-    },
-
-    /**
-     * Name of check input
-     */
-    name: null,
+    columns: [],
 
     /**
      * Buttons
@@ -53,7 +45,7 @@ var ListView = Backbone.View.extend({
     /**
      * Template of list
      */
-    template: 'List',
+    template: 'ListTable',
 
     /**
      * Constructor
@@ -69,21 +61,23 @@ var ListView = Backbone.View.extend({
         if (_.indexOf([this.CHECK_TYPE_CHECKBOX, this.CHECK_TYPE_RADIO], params.checkType)) {
             this.checkType = params.checkType;
 
-            this.name = params.name || ('list' + parseInt(Math.random() * 1000000));
+            this.checkName = params.checkName || ('list' + parseInt(Math.random() * 1000000));
 
         }
 
         // define model to list item converters
-        if (typeof params.modelChecked === 'function') {
-            this.modelChecked = params.modelChecked;
+        if (typeof params.itemChecked === 'function') {
+            this.itemChecked = params.itemChecked;
         }
 
-        if (typeof params.modelValue === 'function') {
-            this.modelValue = params.modelValue;
+        // is header visible
+        if (params.showColumnHeader) {
+            this.showColumnHeader = params.showColumnHeader;
         }
 
-        if (typeof params.modelId === 'function') {
-            this.modelId = params.modelId;
+        // list schema
+        if (_.isArray(params.columns) && params.columns.length > 0) {
+            this.columns = params.columns;
         }
 
         // buttons
@@ -130,19 +124,57 @@ var ListView = Backbone.View.extend({
         this.listenTo(this.collection, 'update', this.render);
     },
 
+    mapModelToItem: function(model) {
+        // columns
+        var item = _.reduce(
+            this.columns,
+            function(item, column, index, list) {
+                if (!column.name) {
+                    throw Error('Column name not specified');
+                }
+
+                var columnValue;
+                if (column.value) {
+                    if (typeof column.value === 'function') {
+                        columnValue = column.value(model);
+                    } else {
+                        columnValue = column.value;
+                    }
+                } else {
+                    columnValue = model.get(column.name);
+                }
+                item[column.name] = columnValue;
+
+                return item;
+            },
+            {},
+            this
+        );
+
+        // item id
+        item['id'] = model.id;
+
+        // item checked
+        if (this.checkType) {
+            item['checked'] = this.itemChecked(model);
+        }
+
+        return item;
+    },
+
     render: function() {
         this.$el.html(app.render(
             this.template,
             {
-                list: this.collection.map(function(model) {
-                    return {
-                        id: this.modelId(model),
-                        value: this.modelValue(model),
-                        checked: this.modelChecked(model)
-                    };
-                }.bind(this)),
+                // list structure
+                columns: this.columns,
+                showColumnHeader: this.showColumnHeader,
+                // collection
+                collection: this.collection.map(this.mapModelToItem.bind(this)),
+                // check
                 checkType: this.checkType,
-                name: this.name,
+                checkName: this.checkName,
+                // buttons
                 buttons: this.buttons
             }
         ));
