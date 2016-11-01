@@ -83,7 +83,7 @@ var MultiTypeaheadView = Marionette.LayoutView.extend({
                         }
                     )
                     .bind('typeahead:selected', function (e, datum) {
-                        self.listView.add(new Backbone.Model(datum));
+                        self.listView.add(self.listView.collection.model(datum));
                     });
             }
         );

@@ -8,7 +8,7 @@ table.table.table-hover.table-striped
       if buttons
         th
   each item in collection
-    tr
+    tr(data-item=item.id)
       if checkType
         td
           input(type=checkType, name=checkName + "[]", checked=item.checked, value=item.id)
@@ -19,7 +19,7 @@ table.table.table-hover.table-striped
           td.text-right
             - var attributes = {class: button.class}
             if (button.name)
-              - attributes["data-"+button.name]=true
+              - attributes["data-"+button.name]=item.id
             a&attributes(attributes)
               if button.icon
                 span(class=button.icon)

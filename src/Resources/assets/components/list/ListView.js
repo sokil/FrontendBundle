@@ -102,10 +102,13 @@ var ListView = Backbone.View.extend({
                             ? '[data-' + params.name + ']'
                             : '.' + classArray.join('.');
 
+                        var self = this;
                         this.delegate(
                             'click',
                             selector,
-                            button.click
+                            function(e) {
+                                return button.click.call(this, e, self);
+                            }
                         );
                     }
 
@@ -187,6 +190,17 @@ var ListView = Backbone.View.extend({
      */
     add: function(model) {
         this.collection.add(model);
+        return this;
+    },
+
+    /**
+     * Remove models from collection
+     *
+     * @param models
+     * @returns {ListView}
+     */
+    remove: function(models) {
+        this.collection.remove(models);
         return this;
     },
 
