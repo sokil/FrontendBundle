@@ -39,12 +39,10 @@ var MultiTypeaheadView = Marionette.LayoutView.extend({
                 // prepare data source
                 var bloodhoundParams = {
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
-                    datumTokenizer: function (datum) {
-                        var value = self.listView.modelValue(new Backbone.Model(datum));
-                        return Bloodhound.tokenizers.whitespace(value);
-                    },
+                    datumTokenizer: self.typeahead.datumTokenizer || Bloodhound.tokenizers.whitespace,
                     identify: function (datum) {
-                        return self.listView.modelId(new Backbone.Model(datum));
+                        var model = self.listView.collection.model;
+                        return (new model(datum)).id;
                     }
                 };
 
@@ -77,12 +75,10 @@ var MultiTypeaheadView = Marionette.LayoutView.extend({
                         null,
                         {
                             source: new Bloodhound(bloodhoundParams),
-                            display: function(datum) {
-                                return self.listView.modelValue(new Backbone.Model(datum));
-                            },
+                            display: self.typeahead.display,
                             templates: {
                                 notFound: '<span class="empty">' + app.t('multiTypeahead.typeahead.notFound') + '</span>',
-                                suggestion: _.template('<div><%= name %></div>')
+                                suggestion: self.typeahead.templates.suggestion
                             }
                         }
                     )

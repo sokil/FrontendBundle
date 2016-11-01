@@ -144,7 +144,6 @@ var ListView = Backbone.View.extend({
                     columnValue = model.get(column.name);
                 }
                 item[column.name] = columnValue;
-
                 return item;
             },
             {},
