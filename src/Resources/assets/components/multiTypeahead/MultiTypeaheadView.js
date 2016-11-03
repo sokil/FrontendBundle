@@ -83,7 +83,13 @@ var MultiTypeaheadView = Marionette.LayoutView.extend({
                         }
                     )
                     .bind('typeahead:selected', function (e, datum) {
-                        self.listView.add(self.listView.collection.model(datum));
+                        // add item to list
+                        var model = new self.listView.collection.model(datum);
+                        self.listView.add(model);
+                        // add select handler
+                        if (typeof self.typeahead.onSelect === 'function') {
+                            self.typeahead.onSelect.call(self, model);
+                        }
                     });
             }
         );
