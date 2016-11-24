@@ -75,9 +75,17 @@ var ListView = Backbone.View.extend({
             this.showColumnHeader = params.showColumnHeader;
         }
 
-        // list schema
-        if (_.isArray(params.columns) && params.columns.length > 0) {
+        // columns
+        if (params.columns) {
             this.columns = params.columns;
+        }
+
+        if (typeof this.columns === 'function') {
+            this.columns = this.columns.call(this);
+        }
+
+        if (!_.isArray(this.columns) || this.columns === 0) {
+            throw Error('Columns must be specified');
         }
 
         // buttons
@@ -124,7 +132,12 @@ var ListView = Backbone.View.extend({
         }
 
         // on collection change re-render list
-        this.listenTo(this.collection, 'update', this.render);
+        this.listenTo(this.collection, 'update', this.renderAsync);
+
+        // fetch collection if it empty
+        if (this.collection.models.length === 0) {
+            this.collection.fetch();
+        }
     },
 
     mapModelToItem: function(model) {
@@ -164,7 +177,7 @@ var ListView = Backbone.View.extend({
         return item;
     },
 
-    render: function() {
+    renderAsync: function() {
         this.$el.html(app.render(
             this.template,
             {
