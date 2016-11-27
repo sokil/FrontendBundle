@@ -20,7 +20,7 @@ Single Page Application based on Backbone, Marionette and Twitter Bootstrap.
     * [Frontend Components](#frontend-components)
          * [Popup](#popup)
          * [List](#list)
-         * [MultiTypeahead](#multiTypeahead)
+         * [MultiTypeahead](#multitypeahead)
 
 ## Installation
 
