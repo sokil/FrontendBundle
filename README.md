@@ -19,6 +19,8 @@ Single Page Application based on Backbone, Marionette and Twitter Bootstrap.
     * [RequireJs](#requirejs)
     * [Frontend Components](#frontend-components)
          * [Popup](#popup)
+         * [List](#list)
+         * [MultiTypeahead](#multiTypeahead)
 
 ## Installation
 
