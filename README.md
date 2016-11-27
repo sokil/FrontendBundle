@@ -16,8 +16,11 @@ Single Page Application based on Backbone, Marionette and Twitter Bootstrap.
     * [Regions](#regions)
     * [Router](#router)
     * [Service container](#service-container)
-    * [RequireJs[(#requirejs)
-    * [Popup](#popup)
+    * [RequireJs](#requirejs)
+    * [Frontend Components](#frontend-components)
+         * [Popup](#popup)
+         * [List](#list)
+         * [MultiTypeahead](#multitypeahead)
 
 ## Installation
 
@@ -322,7 +325,10 @@ var Bundle1RequireJsConfig = {
 
 By default, Application already has pre-configured `FrontendRequireJsConfig`. It has some dependencies, e.g. Twitter Typeahead.
 
-### Popup
+
+### Frontend Components
+
+#### Popup
 
 Popups must extend `PopupView`:
 
@@ -340,3 +346,50 @@ var MyPopupView = PopupView.extend({
     ]
 }
 ```
+
+#### List
+
+This component allows to generate collection of models.
+
+```javascript
+var SomeListView = ListView.extend({
+    showColumnHeader: true, // show table header
+    
+    /**
+     * Defines list of columns
+     * Array, or function that return array
+     * @return {array|function}
+     */
+    columns: function() {
+        return [
+            {
+                caption: app.t('SomeListView.some_column_name'), // column caption
+                name: 'some_column_name' // column name
+            },
+        ];
+    },
+
+   /**
+    * Defines list of buttons, rendered in all rows
+    * Array, or function that return array
+    * @return {array|function} 
+    */
+    buttons: function() {
+        return [
+            {
+                name: 'edit', // button name
+                class: 'btn btn-default btn-xs', // button class
+                icon: 'glyphicon glyphicon-pencil', // button icon
+                caption: app.t('SomeListView.edit'), // button cation
+                click: function() { // click handler
+                     alert('edit');
+                }
+            }
+        ];
+    }
+});
+```
+
+#### MultiTypeahead
+
+Wraps `ListView`, and adds typeahead functionality to add new elements to list.
