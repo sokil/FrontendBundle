@@ -358,7 +358,7 @@ var SomeListView = ListView.extend({
     /**
      * Defines list of columns
      * Array, or function that return array
-     * @return {array|function}
+     * @return {array}
      */
     columns: function() {
         return [
@@ -372,7 +372,7 @@ var SomeListView = ListView.extend({
    /**
     * Defines list of buttons, rendered in all rows
     * Array, or function that return array
-    * @return {array|function} 
+    * @return {array} 
     */
     buttons: function() {
         return [
