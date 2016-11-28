@@ -89,6 +89,10 @@ var ListView = Backbone.View.extend({
         }
 
         // buttons
+        if (params.buttons) {
+            this.buttons = params.buttons;
+        }
+
         if (typeof this.buttons === 'function') {
             this.buttons = this.buttons.call(this);
         }

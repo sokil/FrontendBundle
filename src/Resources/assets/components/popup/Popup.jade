@@ -9,4 +9,4 @@
       .modal-footer
         button.btn.btn-default(type='button', data-dismiss='modal') Close
           each button in buttons
-            button.btn(type='button', class=button.class)= button.title
+            button.btn(type='button', class=button.class)&attributes(button.attributes)= button.title
