@@ -71,14 +71,16 @@ var PopupView = Marionette.LayoutView.extend({
         // render popup
         var popupHtml = app.render('Popup', {
             title: _.result(this, 'title'),
-            buttons: _.extend(
-                {
-                    class: null, // button class
-                    title: null, // button title
-                    attributes: {} // button attributes
-                },
-                _.result(this, 'buttons')
-            ),
+            buttons: _.map(_.result(this, 'buttons'), function(button) {
+                return _.extend(
+                    {
+                        class: null,
+                        title: null,
+                        attributes: {}
+                    },
+                    button
+                );
+            }),
             dialogClass: this.dialogClass
         });
 
