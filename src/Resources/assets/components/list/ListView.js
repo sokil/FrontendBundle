@@ -114,8 +114,8 @@ var ListView = Backbone.View.extend({
                             ? button.class
                             : button.class.split(' ');
 
-                        var selector = params.name
-                            ? '[data-' + params.name + ']'
+                        var selector = button.name
+                            ? '[data-' + button.name + ']'
                             : '.' + classArray.join('.');
 
                         var self = this;
@@ -123,7 +123,13 @@ var ListView = Backbone.View.extend({
                             'click',
                             selector,
                             function(e) {
-                                return button.click.call(this, e, self);
+                                var itemId = self.$(selector).data(button.name);
+                                return button.click.call(
+                                    this,
+                                    e,
+                                    itemId,
+                                    self
+                                );
                             }
                         );
                     }
