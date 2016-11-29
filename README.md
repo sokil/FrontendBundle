@@ -381,7 +381,7 @@ var SomeListView = ListView.extend({
                 class: 'btn btn-default btn-xs', // button class
                 icon: 'glyphicon glyphicon-pencil', // button icon
                 caption: app.t('SomeListView.edit'), // button cation
-                click: function() { // click handler
+                click: function(e, itemId, view) { // click handler
                      alert('edit');
                 }
             }
