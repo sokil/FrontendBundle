@@ -146,11 +146,13 @@ var ListView = Backbone.View.extend({
         }
 
         // on collection change re-render list
-        this.listenTo(this.collection, 'update', this.renderAsync);
+        this.listenTo(this.collection, 'change update', this.renderAsync);
 
         // fetch collection if it empty
         if (this.collection.models.length === 0) {
             this.collection.fetch();
+        } else {
+            this.renderAsync();
         }
     },
 
