@@ -1,6 +1,8 @@
 {% macro commonJsResources() %}
     {% javascripts
         '@FrontendBundle/Resources/public/js/vendor.js'
+        '@FrontendBundle/Resources/assets/traits/*.js'
+        '@FrontendBundle/Resources/assets/js/*.js'
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -21,7 +23,6 @@
 {% macro spaJsResources() %}
     {% javascripts
         '@FrontendBundle/Resources/public/js/components.jade.js'
-        '@FrontendBundle/Resources/assets/traits/*.js'
         '@FrontendBundle/Resources/assets/components/*/*.js'
     %}
     <script src="{{ asset_url }}"></script>

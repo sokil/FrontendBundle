@@ -162,13 +162,10 @@ var Application = Marionette.Application.extend({
      * @returns {*}
      */
     render: function(templateName, data) {
-        var template = window.JST && window.JST[templateName];
-        data = $.extend(data || {}, {
-            t: app.t,
+        data = _.extend({}, data || {}, {
             app: this
         });
-
-        return template(data);
+        return tpl.render(templateName, data);
     },
 
     loadCss: function (resources) {
