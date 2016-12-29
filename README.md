@@ -1,7 +1,7 @@
 Frontend Bundle
 ===============
 
-Single Page Application based on Backbone, Marionette and Twitter Bootstrap.
+Single Page Application based on Backbone, Marionette and Twitter Bootstrap
 
 [![Total Downloads](http://img.shields.io/packagist/dt/sokil/frontend-bundle.svg)](https://packagist.org/packages/sokil/frontend-bundle)
 
