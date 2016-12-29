@@ -4,6 +4,7 @@ Frontend Bundle
 Single Page Application based on Backbone, Marionette and Twitter Bootstrap
 
 [![Total Downloads](http://img.shields.io/packagist/dt/sokil/frontend-bundle.svg)](https://packagist.org/packages/sokil/frontend-bundle)
+[![Build Status](https://travis-ci.org/sokil/frontend-bundle.png?branch=master&1)](https://travis-ci.org/sokil/frontend-bundle)
 
 * [Installation](#installation)
 * [Controller](#controller)
