@@ -1,14 +1,12 @@
 /**
  * Backbone.View trait
  */
-var AbstractFormViewTrait = {
+var FormViewTrait = {
 
     /**
      * List of element selectors
      */
-    elementSelector: {
-        status: '[data-status]'
-    },
+    statusElementSelector: '[data-status]',
 
     /**
      * Show error status
@@ -17,7 +15,7 @@ var AbstractFormViewTrait = {
      */
     showStatus: function(text, className) {
         className = className || 'info';
-        this.$(this.elementSelector.status).append(
+        this.$(this.statusElementSelector).append(
             $('<div>')
                 .addClass('alert alert-' + className)
                 .text(text)
@@ -36,6 +34,6 @@ var AbstractFormViewTrait = {
      * Hide status
      */
     hideStatus: function() {
-        this.$(this.elementSelector.status).empty();
+        this.$(this.statusElementSelector).empty();
     }
 };
