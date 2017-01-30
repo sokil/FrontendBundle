@@ -7,7 +7,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-class SpaExtension extends Extension
+class FrontendExtension extends Extension
 {
     /**
      * {@inheritdoc}
