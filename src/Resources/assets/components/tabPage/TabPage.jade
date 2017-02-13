@@ -1,7 +1,7 @@
 ul.nav.nav-pills
   each tabConfig, tabName in tabs
     li
-      a(data-target="#" + tabConfig.tabPaneId, data-toggle="tab")= tabConfig.caption
+      a(href="#" data-target="#" + tabConfig.tabPaneId, data-toggle="tab")= tabConfig.caption
 .tab-content
   each tabConfig, tabName in tabs
     .tab-pane(id=tabConfig.tabPaneId)
