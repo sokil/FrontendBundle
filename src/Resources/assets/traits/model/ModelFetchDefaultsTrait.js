@@ -23,8 +23,12 @@ var ModelFetchDefaultsTrait = {
             this.urlRoot + '/new',
             options.data || {},
             function(response) {
-                self.defaults = response;
-                self.attributes = _.defaults({}, self.attributes, self.defaults);
+                self.defaults = self.parse(response, {});
+                self.attributes = _.defaults(
+                    {},
+                    self.attributes,
+                    self.defaults
+                );
                 self.trigger('syncDefaults', self, response, options);
                 self.__defaultsFetched = true;
             }
