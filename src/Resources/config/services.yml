@@ -1,2 +1,7 @@
 services:
 
+  frontend.form.serializer:
+    class: Sokil\FrontendBundle\Form\Serializer
+    arguments:
+      - "@form.factory"
+
