@@ -26,11 +26,9 @@ class Serializer
         $fields = [];
         foreach ($form->all() as $field) {
             $config = $field->getConfig();
-            $data = $field->getData();
-            $extraData = $field->getExtraData();
-            $viewData = $field->getViewData();
-            $view = $field->createView();
-            $viewVars = $view->vars;
+            $fields[$field->getName()] = [
+                'type' => $config->getType()->getBlockPrefix(),
+            ];
         }
 
         return $fields;
