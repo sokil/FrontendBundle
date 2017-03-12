@@ -60,6 +60,8 @@ assetic:
         - FrontendBundle
 ```
 
+You can use [DeployBundle](https://github.com/sokil/DeployBundle) to handle process of deployment static resources.
+
 ## Controller
 
 ### Single Page Application
