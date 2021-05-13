@@ -1498,16 +1498,16 @@
         },
         {
             "name": "symfony/polyfill-php56",
-            "version": "v1.17.1",
+            "version": "v1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php56.git",
-                "reference": "a25861bb3c79b0ec2da9ede51de2ea573818b943"
+                "reference": "ea19621731cbd973a6702cfedef3419768bf3372"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php56/zipball/a25861bb3c79b0ec2da9ede51de2ea573818b943",
-                "reference": "a25861bb3c79b0ec2da9ede51de2ea573818b943",
+                "url": "https://api.github.com/repos/symfony/polyfill-php56/zipball/ea19621731cbd973a6702cfedef3419768bf3372",
+                "reference": "ea19621731cbd973a6702cfedef3419768bf3372",
                 "shasum": ""
             },
             "require": {
@@ -1517,7 +1517,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.17-dev"
+                    "dev-main": "1.19-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1568,7 +1568,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-06T08:46:27+00:00"
+            "time": "2020-10-23T09:01:57+00:00"
         },
         {
             "name": "symfony/polyfill-php70",
@@ -1649,16 +1649,16 @@
         },
         {
             "name": "symfony/polyfill-util",
-            "version": "v1.17.1",
+            "version": "v1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-util.git",
-                "reference": "6dd644eda43cd2f3daa883d728d8ab4120a05af6"
+                "reference": "8df0c3e6a4b85df9a5c6f3f2f46fba5c5c47058a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-util/zipball/6dd644eda43cd2f3daa883d728d8ab4120a05af6",
-                "reference": "6dd644eda43cd2f3daa883d728d8ab4120a05af6",
+                "url": "https://api.github.com/repos/symfony/polyfill-util/zipball/8df0c3e6a4b85df9a5c6f3f2f46fba5c5c47058a",
+                "reference": "8df0c3e6a4b85df9a5c6f3f2f46fba5c5c47058a",
                 "shasum": ""
             },
             "require": {
@@ -1667,7 +1667,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.17-dev"
+                    "dev-main": "1.19-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1715,7 +1715,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-06T08:46:27+00:00"
+            "time": "2020-10-21T09:57:48+00:00"
         },
         {
             "name": "symfony/routing",
@@ -1793,16 +1793,16 @@
         },
         {
             "name": "symfony/security-core",
-            "version": "v3.4.42",
+            "version": "v3.4.48",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-core.git",
-                "reference": "24d8cde39e2e20035611924f4e1037c7a8eb4f71"
+                "reference": "7e1a5269333d0d5a4844f03e11e4c41299e71f26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-core/zipball/24d8cde39e2e20035611924f4e1037c7a8eb4f71",
-                "reference": "24d8cde39e2e20035611924f4e1037c7a8eb4f71",
+                "url": "https://api.github.com/repos/symfony/security-core/zipball/7e1a5269333d0d5a4844f03e11e4c41299e71f26",
+                "reference": "7e1a5269333d0d5a4844f03e11e4c41299e71f26",
                 "shasum": ""
             },
             "require": {
@@ -1827,11 +1827,6 @@
                 "symfony/validator": "For using the user password constraint"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.4-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Security\\Core\\": ""
@@ -1870,7 +1865,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-15T21:22:25+00:00"
+            "time": "2021-01-29T09:39:14+00:00"
         },
         {
             "name": "symfony/security-csrf",
@@ -2834,6 +2829,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2015-09-15T10:49:45+00:00"
         },
         {
@@ -3665,12 +3661,12 @@
             "version": "1.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "30eed06dd6bc88410a4ff7f77b6d22f3ce13dbde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/30eed06dd6bc88410a4ff7f77b6d22f3ce13dbde",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/30eed06dd6bc88410a4ff7f77b6d22f3ce13dbde",
                 "reference": "30eed06dd6bc88410a4ff7f77b6d22f3ce13dbde",
                 "shasum": ""
             },
